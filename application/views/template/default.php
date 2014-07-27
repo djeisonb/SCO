@@ -2,9 +2,7 @@
 <html lang="en-us">	
     <head>
         <meta charset="utf-8">
-        <title> SmartAdmin (AJAX)</title>
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <title> Sistema de Cobrança on-Line</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -31,7 +29,7 @@
             <div id="logo-group">
 
                 <!-- Logo -->
-                <span id="logo"> <img src="img/reservado/logo.png" alt="Clube Campestre "> </span>
+                <span id="logo"> <img src="img/reservado/logo.png" alt="Clube Campestre Pentáurea"> </span>
                 <!--*********************************************************-->
 
                 <span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
@@ -121,20 +119,20 @@
             <nav>
                 <ul>
                     <li class="">
-                        <a href="ajax/dashboard.html" title="Dashboard">
+                        <a href="index.php?/admin/home" title="Dashboard">
                             <i class="fa fa-lg fa-fw fa-home"></i> 
                             <span class="menu-item-parent">Início</span>
                         </a>
                     </li>
                     <li>
-                        <a href="ajax/inbox.html">
+                        <a href="index.php?/admin/mensagens">
                             <i class="fa fa-lg fa-fw fa-inbox"></i> 
                             <span class="menu-item-parent">Mensagens</span>
                             <span class="badge pull-right inbox-badge">14</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="index.php?/admin/fazer_baixas">
                             <i class="fa fa-lg fa-fw fa-download"></i>
                             <span class="menu-item-parent">Baixas a Fazer</span>
                         </a>
@@ -146,12 +144,12 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="ajax/flot.html">
+                                <a href="index.php?/admin/associados/pesquisar">
                                     <i class="fa fa-lg fa-fw fa-search"></i> Pesquisar Cadastrados
                                 </a>
                             </li>
                             <li>
-                                <a href="ajax/morris.html">
+                                <a href="index.php?/admin/associados/novo">
                                     <i class="fa fa-lg fa-fw fa-plus"></i> Novo Associado
                                 </a>
                             </li>
@@ -164,12 +162,12 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="ajax/table.html">
+                                <a href="index.php?/admin/cobradores/pesquisar">
                                     <i class="fa fa-lg fa-fw fa-search"></i> Pesquisar Cadastrados
                                 </a>
                             </li>
                             <li>
-                                <a href="ajax/datatables.html">
+                                <a href="index.php?/admin/cobradores/novo">
                                     <i class="fa fa-lg fa-fw fa-plus"></i> Novo Cobrador
                                 </a>
                             </li>
@@ -182,22 +180,12 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="ajax/form-elements.html">
-                                    <i class="fa fa-lg fa-fw fa-calendar"></i> Cobrança/ Dia
+                                <a href="index.php?/admin/relatorios/cobranca">
+                                    <i class="fa fa-lg fa-fw fa-calendar"></i> Cobrança
                                 </a>
                             </li>
                             <li>
-                                <a href="ajax/form-templates.html">
-                                    <i class="fa fa-lg fa-fw fa-calendar"></i> Cobrança/ Mês
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ajax/validation.html">
-                                    <i class="fa fa-lg fa-fw fa-calendar"></i> Cobrança/ Ano
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ajax/bootstrap-forms.html">
+                                <a href="index.php?/admin/relatorios/usuarios_cadastrados">
                                     <i class="glyphicon glyphicon-user"></i> Usuários Cadastrados
                                 </a>
                             </li>
@@ -215,31 +203,31 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="ajax/general-elements.html">
+                                        <a href="index.php?/admin/opcoes/cadastros/usuarios_sistema">
                                             <i class="glyphicon glyphicon-user"></i> Usuários do Sistema
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="ajax/fa.html">
+                                        <a href="index.php?/admin/opcoes/cadastros/tipos_recebimento">
                                             <i class="fa fa-lg fa-fw fa-money"></i> Tipos de Recebimento
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="ajax/grid.html">
+                                <a href="index.php?/admin/opcoes/envio_email">
                                     <i class="fa fa-lg fa-fw fa-envelope"></i> Envio de E-mail
                                 </a>
                             </li>
                             <li>
-                                <a href="ajax/treeview.html">
+                                <a href="index.php?/admin/opcoes/mensalidades">
                                     <i class="fa fa-lg fa-fw fa-calendar"></i> Mensalidades
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="ajax/treeview.html">
+                        <a href="*">
                             <i class="fa fa-lg fa-fw fa-sign-out"></i> 
                             <span class="menu-item-parent">Fazer Logoff</span>
                         </a>
@@ -254,26 +242,15 @@
 
             <!-- RIBBON -->
             <div id="ribbon">
-
-                <span class="ribbon-button-alignment"> 
-                    <span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh" rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true" data-reset-msg="Would you like to RESET all your saved widgets and clear LocalStorage?"><i class="fa fa-refresh"></i></span> 
-                </span>
-
                 <!-- breadcrumb -->
-                <ol class="breadcrumb">
-                    <!-- This is auto generated -->
-                </ol>
-                <!-- end breadcrumb -->
-
+                <ol class="breadcrumb"></ol>
+				<!--********************************************************-->
             </div>
-            <!-- END RIBBON -->
+            <!--************************************************************-->
 
-            <!-- #MAIN CONTENT -->
-            <div id="content">
-
-            </div>
-
-            <!-- END #MAIN CONTENT -->
+            <!-- #MAIN CONTENT (As páginas serão inseridas aqui via ajax) -->
+            <div id="content"></div>
+            <!--************************************************************-->
 
         </div>
         <!-- END #MAIN PANEL -->
@@ -291,25 +268,10 @@
 
         <!--================================================== -->
 
-        <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)
-        <script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
-
-
         <!-- #PLUGINS -->
         <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <script>
-            if (!window.jQuery) {
-                document.write('<script src="js/libs/jquery-2.0.2.min.js"><\/script>');
-            }
-        </script>
-
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-        <script>
-            if (!window.jQuery.ui) {
-                document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
-            }
-        </script>
+        <script src="js/libs/jquery-2.0.2.min.js"></script>
+        <script src="js/libs/jquery-ui-1.10.3.min.js"></script>
 
         <!-- IMPORTANT: APP CONFIG -->
         <script src="js/app.config.js"></script>
@@ -334,9 +296,6 @@
 
         <!-- JQUERY SELECT2 INPUT -->
         <script src="js/plugin/select2/select2.min.js"></script>
-
-        <!-- JQUERY UI + Bootstrap Slider -->
-        <script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
 
         <!-- browser msie issue fix -->
         <script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>

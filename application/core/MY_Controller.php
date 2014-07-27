@@ -27,13 +27,13 @@
          * 
          * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
          * @abstract    Realiza a construção da classe
-         * @param       bool $requer_autenticaco Se recebe TRUE, indica que para 
+         * @param       bool $requer_autenticacao Se recebe TRUE, indica que para 
          *              acessar o controller é necessário fazer login no sistema
          * @access      Public
          */
-        public function __construct($requer_autenticaco = TRUE)
+        public function __construct($requer_autenticacao = TRUE)
         {
-            parent::__construct($requer_autenticaco);
+            parent::__construct($requer_autenticacao);
             
             session_start();
             
@@ -41,7 +41,7 @@
             $this->template = 'template/default';
             $this->titulo   = 'SCO - Login';
             
-            $this->verifica_login($requer_autenticaco);
+            $this->verifica_login($requer_autenticacao);
         }
         //**********************************************************************
         
