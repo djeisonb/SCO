@@ -1,4 +1,5 @@
-<div class="alert alert-success">
-    <h4 class="alert-heading">Sucesso</h4>
-    <p>Página home iniciada com sucesso</p>
+<div class="row">
+    <div align="center">
+        <img src="./img/reservado/logo.png">
+    </div>
 </div>

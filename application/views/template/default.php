@@ -157,24 +157,6 @@
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fa fa-lg fa-fw fa-male"></i> 
-                            <span class="menu-item-parent">Cobradores</span>
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="index.php?/admin/cobradores/pesquisar">
-                                    <i class="fa fa-lg fa-fw fa-search"></i> Pesquisar Cadastrados
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.php?/admin/cobradores/novo">
-                                    <i class="fa fa-lg fa-fw fa-plus"></i> Novo Cobrador
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
                             <i class="fa fa-lg fa-fw fa-file-text-o"></i> 
                             <span class="menu-item-parent">Relatórios</span>
                         </a>
@@ -227,7 +209,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="*">
+                        <a href="#">
                             <i class="fa fa-lg fa-fw fa-sign-out"></i> 
                             <span class="menu-item-parent">Fazer Logoff</span>
                         </a>
