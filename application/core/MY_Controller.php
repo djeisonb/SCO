@@ -38,7 +38,7 @@
             session_start();
             
             /** Define o template padrao das páginas **/
-            $this->template = 'template/default';
+            $this->template = 'template/login';
             $this->titulo   = 'SCO - Login';
             
             $this->verifica_login($requer_autenticacao);
@@ -81,7 +81,6 @@
             }
         }
         //**********************************************************************
-    }
-    
+    }    
     /** End of File MY_Controller.php **/
     /** Location ./application/core/MY_Controller.php **/

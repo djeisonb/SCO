@@ -31,7 +31,7 @@
             parent::__construct();
             
             /** Faz o Load do banco de dados **/
-            $this->load->database('defalt', TRUE);
+            $this->BD = $this->load->database('default', TRUE);
         }
         //**********************************************************************
         
@@ -93,7 +93,23 @@
             return $this->BD->insert($this->_tabela, $dados);
         }
         //**********************************************************************
+        
+        /**
+         * buscar()
+         * 
+         * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+         * @abstract    Função desenvolvida para realizar as buscas
+         * @access      Public
+         * @param       array $where Contém as cláusulas WHERE que serão utilizadas
+         *              na consulta sql
+         * @return      retorna um array de objetos se encontrar algo
+         */
+        public function buscar($where)
+        {   
+            $this->BD->where($where);
+            return $this->BD->get($this->_tabela)->result();
+        }
+        //**********************************************************************
     }
-    
     /** End of File MY_Model.php **/
     /** Location ./application/core/MY_Model.php **/

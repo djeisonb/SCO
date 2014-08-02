@@ -22,6 +22,8 @@
         public function __construct($requer_autenticaco = FALSE)
         {
             parent::__construct($requer_autenticaco);
+            
+            $this->load->model('usuarios_model', 'usuarios');
         }
         //**********************************************************************
         
@@ -33,8 +35,42 @@
          */
         function index()
         {
+            $this->view = 'login';
+            $this->template = 'template/login';
             $this->LoadView();
         }
+        //**********************************************************************
+        
+        /**
+         * fazer_login()
+         * 
+         * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+         * @abstract    Função desenvolvida para fazer o login dos usuários
+         */
+        function fazer_login()
+        {
+            $dados['usuario']   = $this->input->post('usuario');
+            $dados['senha']     = md5($this->input->post('senha'));
+            
+            if(!$this->usuarios->login($dados))
+            {
+                $erro   = "Usuário ou senha incorreta";
+                $grupo  = '';
+            }
+            else
+            {
+                $grupo  = '1';
+                $erro   = '';
+            }
+            
+            $resposta = array(
+                'erro'  => $erro,
+                'grupo' => $grupo
+            );
+                
+            echo json_encode($resposta);
+        }
+        //**********************************************************************
     }
     /** End of File login.php**/
     /** Location ./application/controllers/login.php **/
