@@ -5,7 +5,6 @@
     
     <!-- Div que contém o formulário de Login -->
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        Tem que fazer o rediceionamento em caso de login positivo
         <div class="well no-padding">
             <form id="login-form" class="smart-form client-form">
                 <header>
@@ -79,7 +78,8 @@
                     }
                     if(sucesso.grupo)
                     {
-                        msg_sucesso(sucesso.grupo);
+                        url = '<?php echo app_baseurl()?>'+sucesso.grupo+'/painel';
+                        location.href = url;
                     }
                 },
                 error: function()

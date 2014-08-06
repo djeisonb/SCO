@@ -24,6 +24,7 @@
             parent::__construct($requer_autenticaco);
             
             $this->load->model('usuarios_model', 'usuarios');
+            $this->load->model('grupos_model', 'grupos');
         }
         //**********************************************************************
         
@@ -52,14 +53,16 @@
             $dados['usuario']   = $this->input->post('usuario');
             $dados['senha']     = md5($this->input->post('senha'));
             
-            if(!$this->usuarios->login($dados))
+            $usuario = $this->usuarios->login($dados);
+            
+            if(!$usuario)
             {
                 $erro   = "Usuário ou senha incorreta";
                 $grupo  = '';
             }
             else
             {
-                $grupo  = '1';
+                $grupo  = $this->definir_permissao($usuario);
                 $erro   = '';
             }
             
@@ -69,6 +72,53 @@
             );
                 
             echo json_encode($resposta);
+        }
+        //**********************************************************************
+        
+        /**
+         * definir_permissao()
+         * 
+         * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+         * @abstract    Função desenvolvida para definir a permissão do usuário
+         * @access      Private
+         */
+        private function definir_permissao($usuario)
+        {
+            /** Percorre o array para definir o ID da permissão e o nome de usuário **/
+            foreach($usuario as $row)
+            {
+                $id             = $row->id_grupo;
+                $nome_usuario   = $row->nome_completo;
+            }
+            
+            /** Reecebe a permissão cadastrada **/
+            $permissoes = $this->grupos->buscar_grupo($id);
+            
+            foreach ($permissoes as $row)
+            {
+                $grupo = $row->abreviacao;
+            }
+            
+            /** Define a seção com o nome do grupo **/
+            $_SESSION['usuario']['nome']     = $nome_usuario;
+            $_SESSION['usuario']['grupo']    = $grupo;
+            
+            return $grupo;
+        }
+        //**********************************************************************
+        
+        /**
+         * logoff()
+         * 
+         * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+         * @abstract    Função desenvolvida para fazer o logoff do sistema
+         */
+        function logoff()
+        {
+            session_destroy();
+            unset($_SESSION['usuario']);
+            
+            redirect(app_baseurl().'login');
         }
         //**********************************************************************
     }

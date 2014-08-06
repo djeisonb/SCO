@@ -33,8 +33,7 @@
          */
         public function __construct($requer_autenticacao = TRUE)
         {
-            parent::__construct($requer_autenticacao);
-            
+            parent::__construct();
             session_start();
             
             /** Define o template padrao das páginas **/
@@ -57,6 +56,7 @@
         {   
             $this->dados['view']    = $this->view;
             $this->dados['titulo']  = $this->titulo;
+            
             $this->load->view($this->template, $this->dados);
         }
         //**********************************************************************
@@ -71,10 +71,10 @@
          *              login para acessar uma classe
          */
         private function verifica_login($requer_autenticacao)
-        {
+        {   
             if($requer_autenticacao)
             {
-                if(!isset($_SESSION['admin']) || !isset($_SESSION['mobile']))
+                if(!isset($_SESSION['usuario']))
                 {
                     redirect(app_baseurl().'login');
                 }

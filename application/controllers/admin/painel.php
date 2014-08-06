@@ -1,24 +1,20 @@
 <?php
 
     /**
-     * FAZER_BAIXAS.PHP
+     * painel.php
      * 
      * @package     CI_Controller
      * @subpackage  MY_Controller
      * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
-     * @abstract    Classe desenvolvida para realizar as baixas
-     * @todo        Definir se haverá algum dado a ser mostrado nesta view
+     * @abstract    Classe desenvolvida para mostrar a tela inicial do sistema
      */
-    class Fazer_baixas extends MY_Controller
+    class Painel extends MY_Controller
     {
         /**
          * __construct()
          * 
          * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
          * @abstract    Realiza a construção da classe
-         * @access      Public
-         * @param       bool $requer_autenticacao Se TRUE, indica que é necessário
-         *              fazer login
          */
         public function __construct($requer_autenticacao = TRUE)
         {   
@@ -31,13 +27,16 @@
          * 
          * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
          * @abstract    Função principal do controller
-         * @access      Public
          */
         function index()
         {
-            $this->load->view('paginas/admin/fazer_baixas');
+            $this->template = 'template/adm_template';
+            $this->titulo   = 'SCO - Início';
+            $this->view     = 'admin/painel';
+            
+            $this->LoadView();
         }
         //**********************************************************************
     }
-    /** End of File home.php **/
-    /** Location ./application/controllers/admin/home.php **/
+    /** End of File painel.php **/
+    /** Location ./application/controllers/admin/painel.php **/

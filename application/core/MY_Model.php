@@ -104,9 +104,13 @@
          *              na consulta sql
          * @return      retorna um array de objetos se encontrar algo
          */
-        public function buscar($where)
+        public function buscar($where = NULL)
         {   
-            $this->BD->where($where);
+            if($where)
+            {
+                $this->BD->where($where);
+            }
+            
             return $this->BD->get($this->_tabela)->result();
         }
         //**********************************************************************

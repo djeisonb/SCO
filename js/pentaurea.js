@@ -5,6 +5,26 @@
  */
 
 /**
+ * Função que irá previnir que o menu use o elemento padrão, para que as urls 
+ * do menu possam ser carregadas via ajax
+ */
+$('nav a:not(#logoff)').click(function(e){
+    e.preventDefault();
+    
+    href = $(this).attr('href');
+    loadAjax(href);
+});
+//******************************************************************************
+
+/** Função que recebe atributo href do primeiro link do menu **/
+var inicio = $('nav > ul > li:first-child > a[href!="#"]').attr('href');
+//******************************************************************************
+
+/** Chamada da função loadAjax() **/
+loadAjax(inicio);
+//******************************************************************************
+
+/**
  * load_ajax()
  * 
  * Função desenvolvida para buscar determinadas páginas requeridas via ajax.
@@ -15,10 +35,25 @@
  */
 function loadAjax(url, container)
 {
+    /** Remove qualquer classe ativa no menu **/
+    $("nav li.active").removeClass("active");
+    
+    /**
+     * Procura no menu um elemento quee contenha a url que foi passada para setar
+     * o elemento como active, podendo assim, desenhar o breadCrumb
+     */
+    $('nav li:has(a[href="'+url+'"])').addClass("active");
+    
+    if(container == undefined)
+    {
+        container = $("#content:not(.container)");
+    }
+    
     container.html('<h4><i class="fa fa-cog fa-spin"></i> Buscando...</h4>');
 
     $.get(url, function(e) {
-        container.html(e);
+        container.css({opacity: "0.0"}).html(e).delay(50).animate({opacity: "1.0"}, 300);
+        drawBreadCrumb();
     }).fail(function() {
         container.html('<h4 class="ajax-loading-error"><i class="fa fa-warning txt-color-orangeDark"></i> Erro 404! Página ou recurso não encontrado.</h4>');
     });
@@ -62,5 +97,46 @@ function msg_erro(msg)
         color: "#FE1A00",
         timeout: 5000
     });
+}
+//******************************************************************************
+
+/**
+ * logoff()
+ * 
+ * Função desenvolvida para realizar o login
+ * 
+ * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+ * @param       {string} url COntém a url para fazer o logoff
+ */
+function logoff(url)
+{
+    $.SmartMessageBox({
+        title: "<i class='fa fa-sign-out txt-color-orangeDark'></i> Deseja sair <span class='txt-color-orangeDark'></span> ?",
+        content: "Você pode melhorar a segurança fechando esta aba após realizar o logoff",
+        buttons: '[Não][Sim]'
+    }, function(e){
+        if (e == "Sim") {
+            $.root_.addClass('animated fadeOutUp');
+            setTimeout(logout(url), 1000);
+        }
+        else
+        {
+            return false;
+        }
+    });
+}
+//******************************************************************************
+
+/**
+ * logout()
+ * 
+ * Função desenvolvida para redirecionar para a função que faz logoff
+ * 
+ * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+ * @param       {string} url Contém a url da função de logoff
+ */
+function logout(url)
+{
+    location.href = url;
 }
 //******************************************************************************
