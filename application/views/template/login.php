@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.min.css">
         <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="js/ios-overlay/css/iosOverlay.css">
         <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
         <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
         <script src="./js/libs/jquery-2.0.2.min.js"></script>
@@ -43,18 +44,52 @@
 
         <!-- JQUERY MASKED INPUT -->
         <script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
-
-        <!--[if IE 8]>
-                
-                <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
-                
-        <![endif]-->
+        
+        <!-- IOS OVERLAY E SPINNER-->
+        <script src="./js/ios-overlay/js/iosOverlay.js"></script>
+        <script src="./js/ios-overlay/js/spin.min.js"></script>
 
         <!-- MAIN APP JS FILE -->
         <script src="js/app.min.js"></script>
         <script type="text/javascript">
             /** Função que irá buscar o script via ajax **/
             loadScript('./js/pentaurea.js');
+            
+            /**
+             * Função para mostrar mensagem nas requisições ajax
+             */
+            var overlay = '';
+            
+            $(document).ajaxStart(function(){
+                var opts = {
+                    lines: 13,
+                    length: 11,
+                    width: 5,
+                    radius: 17,
+                    corners: 1,
+                    rotate: 0,
+                    color: '#FFF',
+                    speed: 1,
+                    trail: 60,
+                    shadow: false,
+                    hwaccel: false,
+                    className: 'spinner',
+                    zIndex: 2e9,
+                    top: 'auto',
+                    left: 'auto'
+                };
+                var target = document.createElement("div");
+                document.body.appendChild(target);
+                var spinner = new Spinner(opts).spin(target);
+                overlay = iosOverlay({
+                    text: "Carregando",
+                    spinner: spinner
+                });
+            });
+            
+            $(document).ajaxComplete(function(){
+                overlay.hide();
+            });
         </script>
     </body>
 </html>

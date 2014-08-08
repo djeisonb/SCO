@@ -48,8 +48,6 @@ function loadAjax(url, container)
     {
         container = $("#content:not(.container)");
     }
-    
-    container.html('<h4><i class="fa fa-cog fa-spin"></i> Buscando...</h4>');
 
     $.get(url, function(e) {
         container.css({opacity: "0.0"}).html(e).delay(50).animate({opacity: "1.0"}, 300);

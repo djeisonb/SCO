@@ -1,7 +1,5 @@
 <!-- row -->
-
 <div class="row">
-
     <div class="col-sm-12">
 
         <ul id="myTab1" class="nav nav-tabs bordered">
@@ -13,43 +11,22 @@
         <div id="myTabContent1" class="tab-content bg-color-white padding-10">
             <div class="tab-pane fade in active" id="s1">
                 <br>
-                <div class="input-group input-group-lg hidden-mobile">
-                    <input class="form-control input-lg" type="text" placeholder="Digite o nome do associado..." id="search-project">
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default">
-                            &nbsp;&nbsp;&nbsp;
-                            <i class="fa fa-fw fa-search fa-lg"></i>
-                            &nbsp;&nbsp;&nbsp;
-                        </button>
+                <form id="busca_associado">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control input-lg" type="text" placeholder="Digite o nome do associado..." id="search">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default">
+                                &nbsp;&nbsp;&nbsp;
+                                <i class="fa fa-fw fa-search fa-lg"></i>
+                                &nbsp;&nbsp;&nbsp;
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
 
-                <div class="search-results clearfix smart-form">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Tipo da Cota</th>
-                                <th>Data de adesão</th>
-                                <th>Último mês pago</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>José Fernandes da Fonseca Neto</td>
-                                <td>Cota - Sócio Proprietário</td>
-                                <td>27/07/2014 13:30</td>
-                                <td>Jan/ 2014</td>
-                            </tr>
-                            <tr>
-                                <td>Altamiro Ferreia da Silva</td>
-                                <td>Cota - Sócio Proprietário</td>
-                                <td>27/07/2014 13:30</td>
-                                <td>Jul/ 2014</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <!-- Div que receberá os dados da busca via ajax -->
+                <div class="search-results clearfix smart-form" id="resultados_busca"></div>
+                <!--*********************************************************-->
             </div>
         </div>
 
@@ -65,5 +42,19 @@
 
     // PAGE RELATED SCRIPTS
     $("#search-project").focus();
+    
+    /**
+     * Função desenvolvida para realizar a busca via ajax
+     */
+    $('#busca_associado').submit(function(e){
+        e.preventDefault();
+        
+        search = $('#search').val();
+        
+        $.post('<?php echo app_baseurl().'admin/associados/pesquisar/search'?>', {search:search}, function(e){
+            $('#resultados_busca').html(e);
+        });
+    
+    });
 
 </script>

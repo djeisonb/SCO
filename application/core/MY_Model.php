@@ -100,12 +100,13 @@
          * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
          * @abstract    Função desenvolvida para realizar as buscas
          * @access      Public
-         * @param       array $where Contém as cláusulas WHERE que serão utilizadas
+         * @param       array   $where  Contém as cláusulas WHERE que serão utilizadas
          *              na consulta sql
          * @return      retorna um array de objetos se encontrar algo
          */
         public function buscar($where = NULL)
         {   
+            
             if($where)
             {
                 $this->BD->where($where);
