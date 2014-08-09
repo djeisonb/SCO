@@ -29,7 +29,7 @@
                     foreach($associados as $row)
                     {
                         ?>
-                        <tr>
+                        <tr class="click">
                             <td>
                                 <?php echo $row->nome_associado?>
                             </td>

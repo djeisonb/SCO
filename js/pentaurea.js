@@ -8,7 +8,7 @@
  * Função que irá previnir que o menu use o elemento padrão, para que as urls 
  * do menu possam ser carregadas via ajax
  */
-$('nav a:not(#logoff)').click(function(e){
+$('nav a[href!="#"]:not(#logoff)').click(function(e){
     e.preventDefault();
     
     href = $(this).attr('href');

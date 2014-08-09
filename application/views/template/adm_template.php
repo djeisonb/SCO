@@ -10,11 +10,13 @@
         <!-- Basic Styles -->
         <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="js/ios-overlay/css/iosOverlay.css">
 
         <!-- SmartAdmin Styles -->
         <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.min.css">
         <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.min.css">
+        
+        <!-- Estilo personalizado do Pentáurea -->
+        <link rel="stylesheet" type="text/css" media="screen" href="./css/pentaurea.css">
 
         <!-- #FAVICONS -->
         <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -85,50 +87,41 @@
         <!-- Voice command : plugin -->
         <script src="./js/speech/voicecommand.min.js"></script>
         
-        <!-- IOS OVERLAY E SPINNER-->
-        <script src="./js/ios-overlay/js/iosOverlay.js"></script>
-        <script src="./js/ios-overlay/js/spin.min.js"></script>
+        <!-- BlockUI -->
+        <script src="./js/blockUi/blockUI.js"></script>
         
+        <!-- HTML5 Utils, utilizado na detecção da conectividade -->
+        <script src="./js/h5utils/h5utils.js"></script>
         
+        <!-- Configurações do Ajax -->
+        <script src="./js/ajaxSetup.js"></script>
         
         <script type="text/javascript">
             loadScript('./js/pentaurea.js');
             
+            
             /**
-             * Função para mostrar mensagem nas requisições ajax
+             * verifica_conectividade()
+             * 
+             * Função desenvolvida para verificar a conectividade do dispositivo
+             * 
+             * @author  html5Demos.com
+             * @see     http://html5demos.com/offline
              */
-            var overlay = '';
-            
-            $(document).ajaxStart(function(){
-                var opts = {
-                    lines: 13,
-                    length: 11,
-                    width: 5,
-                    radius: 17,
-                    corners: 1,
-                    rotate: 0,
-                    color: '#FFF',
-                    speed: 1,
-                    trail: 60,
-                    shadow: false,
-                    hwaccel: false,
-                    className: 'spinner',
-                    zIndex: 2e9,
-                    top: 'auto',
-                    left: 'auto'
-                };
-                var target = document.createElement("div");
-                document.body.appendChild(target);
-                var spinner = new Spinner(opts).spin(target);
-                overlay = iosOverlay({
-                    text: "Carregando",
-                    spinner: spinner
-                });
-            });
-            
-            $(document).ajaxComplete(function(){
-                overlay.hide();
-            });
+            function verifica_conectividade()
+            {
+                if(navigator.onLine)
+                {
+                    msg_sucesso('Online');
+                }
+                else
+                {
+                    msg_erro('Offline');
+                }
+            }
+            addEvent(window, 'online', verifica_conectividade);
+            addEvent(window, 'offline', verifica_conectividade);
+            //******************************************************************
         </script>
     </body>
 
