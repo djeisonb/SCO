@@ -1,17 +1,3 @@
-<div class="row">
-    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-        <h1 class="page-title txt-color-blueDark">
-
-            <!-- PAGE HEADER -->
-            <i class="fa-fw fa fa-user"></i> 
-            Cadastro
-            <span>>  
-                Cadastro de Associados
-            </span>
-        </h1>
-    </div>
-</div>
-
 <!-- widget grid -->
 <section id="widget-grid" class="">
 
@@ -36,95 +22,211 @@
                     <!-- widget content -->
                     <div class="widget-body no-padding">
 
-                        <form action="" id="order-form" class="smart-form" novalidate="novalidate">
-                            <header>
-                                Dados Pessoais
-                            </header>
-
+                        <form action="" id="cadastro_usuario" class="smart-form" novalidate="novalidate">
                             <fieldset>
                                 <div class="row">
                                     <section class="col col-6">
-                                        <label class="input"> <i class="icon-append fa fa-user"></i>
-                                            <input type="text" name="name" placeholder="Name">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-font"></i>
+                                            <input type="text" name="nome_associado" id="nome_associado" placeholder="Nome do associado">
                                         </label>
                                     </section>
                                     <section class="col col-6">
-                                        <label class="input"> <i class="icon-append fa fa-briefcase"></i>
-                                            <input type="text" name="company" placeholder="Company">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-tag"></i>
+                                            <input type="text" name="cpf_associado" id="cpf_associado" placeholder="CPF" data-mask="999.999.999-99" data-mask-placeholder="*">
                                         </label>
                                     </section>
                                 </div>
 
                                 <div class="row">
                                     <section class="col col-6">
-                                        <label class="input"> <i class="icon-append fa fa-envelope-o"></i>
-                                            <input type="email" name="email" placeholder="E-mail">
+                                        <label class="select">
+                                            <select name="tipo_cota" id="tipo_cota">
+                                                <option value="0" selected="" disabled="">Tipo de Cota</option>
+                                                <option value="1">Proprietário</option>
+                                                <option value="2">Benemérito</option>
+                                                <option value="3">Contribuinte</option>
+                                                <option value="4">Temporário</option>
+                                            </select> <i></i>
                                         </label>
                                     </section>
                                     <section class="col col-6">
-                                        <label class="input"> <i class="icon-append fa fa-phone"></i>
-                                            <input type="tel" name="phone" placeholder="Phone" data-mask="(999) 999-9999">
+                                        <label class="input"> <i class="icon-append fa fa-tags"></i>
+                                            <input type="text" name="numero_identidade" id="numero_identidade" placeholder="Numero da identidade">
                                         </label>
                                     </section>
                                 </div>
-                            </fieldset>
-
-                            <header>
-                                Dados Profissionais
-                            </header>
-                            <fieldset>
+                                
+                                <div class="row">
+                                    <section class="col col-6">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-calendar"></i>
+                                            <input type="text" name="data_expedicao" id="data_expedicao" placeholder="Data de expedição" data-mask="99/99/9999" data-mask-placeholder="*">
+                                        </label>
+                                    </section>
+                                    <section class="col col-6">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-bank"></i>
+                                            <input type="text" name="orgao_emissor" id="orgao_emissor"  placeholder="Órgão emissor" data-mask="aaa-aa" data-mask-placeholder="*">
+                                        </label>
+                                    </section>
+                                </div>
+                                
+                                <div class="row">
+                                    <section class="col col-6">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-calendar"></i>
+                                            <input type="text" name="data_nascimento" id="data_nascimento"  placeholder="Data de nascimento" data-mask="99/99/9999" data-mask-placeholder="*">
+                                        </label>
+                                    </section>
+                                    <section class="col col-6">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-map-marker"></i>
+                                            <input type="text" name="naturalidade" id="naturalidade" placeholder="Naturalidade">
+                                        </label>
+                                    </section>
+                                </div>
+                                
+                                <div class="row">
+                                    <section class="col col-6">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-map-marker"></i>
+                                            <input type="text" name="estado" id="estado" placeholder="Estado">
+                                        </label>
+                                    </section>
+                                    <section class="col col-6">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-font"></i>
+                                            <input type="text" name="nome_pai" id="nome_pai" placeholder="Nome do pai">
+                                        </label>
+                                    </section>
+                                </div>
+                                
+                                <div class="row">
+                                    <section class="col col-6">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-font"></i>
+                                            <input type="text" name="nome_mae" id="nome_mae" placeholder="Nome da mãe">
+                                        </label>
+                                    </section>
+                                    <section class="col col-6">
+                                        <label class="select">
+                                            <select name="sexo" id="sexo">
+                                                <option value="0" selected="" disabled="">Sexo</option>
+                                                <option value="1">Masculino</option>
+                                                <option value="2">Feminino</option>
+                                            </select> <i></i>
+                                        </label>
+                                    </section>
+                                </div>
+                                
                                 <div class="row">
                                     <section class="col col-6">
                                         <label class="select">
-                                            <select name="interested">
-                                                <option value="0" selected="" disabled="">Interested in</option>
-                                                <option value="1">design</option>
-                                                <option value="1">development</option>
-                                                <option value="2">illustration</option>
-                                                <option value="2">branding</option>
-                                                <option value="3">video</option>
-                                            </select> <i></i> </label>
+                                            <select name="escolaridade" id="escolaridade">
+                                                <option value="0" selected="" disabled="">Escolaridade</option>
+                                                <option value="1">Adicionar opções</option>
+                                            </select> <i></i>
+                                        </label>
                                     </section>
                                     <section class="col col-6">
                                         <label class="select">
-                                            <select name="budget">
-                                                <option value="0" selected="" disabled="">Budget</option>
-                                                <option value="1">less than 5000$</option>
-                                                <option value="2">5000$ - 10000$</option>
-                                                <option value="3">10000$ - 20000$</option>
-                                                <option value="4">more than 20000$</option>
-                                            </select> <i></i> </label>
+                                            <select name="estado_civil" id="estado_civil">
+                                                <option value="0" selected="" disabled="">Estado Civil</option>
+                                                <option value="1">Adicionar opções</option>
+                                            </select> <i></i>
+                                        </label>
                                     </section>
                                 </div>
-
+                                
+                                <div class="row">
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-home"></i>
+                                            <input type="text" name="endereco_residencial" id="endereco_residencial" placeholder="Endereço residencial">
+                                        </label>
+                                    </section>
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-sort-numeric-asc"></i>
+                                            <input type="text" name="numero" id="numero" placeholder="Número">
+                                        </label>
+                                    </section>
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-font"></i>
+                                            <input type="text" name="complemento" id="complemento" placeholder="Complemento">
+                                        </label>
+                                    </section>
+                                </div>
+                                
                                 <div class="row">
                                     <section class="col col-6">
-                                        <label class="input"> <i class="icon-append fa fa-calendar"></i>
-                                            <input type="text" name="startdate" id="startdate" placeholder="Expected start date">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-map-marker"></i>
+                                            <input type="text" name="bairro" id="bairro" placeholder="Bairro">
                                         </label>
                                     </section>
                                     <section class="col col-6">
-                                        <label class="input"> <i class="icon-append fa fa-calendar"></i>
-                                            <input type="text" name="finishdate" id="finishdate" placeholder="Expected finish date">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-map-marker"></i>
+                                            <input type="text" name="cidade" id="cidade" placeholder="Cidade">
                                         </label>
                                     </section>
                                 </div>
-
-                                <section>
-                                    <label for="file" class="input input-file">
-                                        <div class="button"><input type="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">Browse</div><input type="text" placeholder="Include some files" readonly="">
-                                    </label>
-                                </section>
-
-                                <section>
-                                    <label class="textarea"> <i class="icon-append fa fa-comment"></i> 										
-                                        <textarea rows="5" name="comment" placeholder="Tell us about your project"></textarea> 
-                                    </label>
-                                </section>
+                                
+                                <div class="row">
+                                    <section class="col col-6">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-truck"></i>
+                                            <input type="text" name="cep" id="cep" placeholder="CEP" data-mask="99999-999" data-mask-placeholder="*">
+                                        </label>
+                                    </section>
+                                    <section class="col col-6">
+                                        <label class="select">
+                                            <select name="residencia" id="residencia">
+                                                <option value="0" selected="" disabled="">Tipo de residência</option>
+                                                <option value="1">Adicionar opções</option>
+                                            </select> <i></i>
+                                        </label>
+                                    </section>
+                                </div>
+                                
+                                <div class="row">
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-calendar"></i>
+                                            <input type="text" name="anos_residencia" id="anos_residencia" placeholder="Tempo na residência">
+                                        </label>
+                                    </section>
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-phone"></i>
+                                            <input type="text" name="telefone" name="telefone" placeholder="Telefone fixo" data-mask="(99)9999-9999" data-mask-placeholder='*'>
+                                        </label>
+                                    </section>
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-phone"></i>
+                                            <input type="text" name="celular" id="celular" placeholder="Telefone Celular" data-mask="(99)9999-9999" data-mask-placeholder='*'>
+                                        </label>
+                                    </section>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col col-6">
+                                        <label class="input">
+                                            <i class="icon-append">@</i>
+                                            <input type="text" name="email" id="email" placeholder="Endereço de E-mail">
+                                        </label>
+                                    </div>
+                                </div>
+                                
                             </fieldset>
                             <footer>
                                 <button type="submit" class="btn btn-primary">
-                                    Validate Form
+                                    Salvar associado
                                 </button>
                             </footer>
                         </form>
@@ -160,105 +262,147 @@
     // PAGE RELATED SCRIPTS
 
     // Load form valisation dependency 
-    loadScript("js/plugin/jquery-form/jquery-form.min.js", runFormValidation);
+    loadScript("./js/plugin/jquery-validate/jquery.validate.min.js", runFormValidation);
 
 
     // Registration validation script
     function runFormValidation() {
 
-
-        var $checkoutForm = $('#checkout-form').validate({
-            // Rules for form validation
+        var cadastro = $('#cadastro_usuario').validate({
             rules: {
-                fname: {
+                nome_associado: {
                     required: true
                 },
-                lname: {
+                cpf_associado: {
                     required: true
                 },
-                email: {
-                    required: true,
-                    email: true
-                },
-                phone: {
+                tipo_cota: {
                     required: true
                 },
-                country: {
+                data_expedicao: {
                     required: true
                 },
-                city: {
+                orgao_emissor: {
                     required: true
                 },
-                code: {
-                    required: true,
+                data_nascimento: {
+                    required: true
+                },
+                naturalidade: {
+                    required: true
+                },
+                estado: {
+                    required: true
+                },
+                nome_pai: {
+                    required: true
+                },
+                nome_mae: {
+                    required: true
+                },
+                sexo: {
+                    required: true
+                },
+                escolaridade: {
+                    required: true
+                },
+                estado_civil: {
+                    required: true
+                },
+                endereco_residencial: {
+                    required: true
+                },
+                numero: {
                     digits: true
                 },
-                address: {
+                bairro: {
                     required: true
                 },
-                name: {
+                cidade: {
                     required: true
                 },
-                card: {
-                    required: true,
-                    creditcard: true
-                },
-                cvv: {
-                    required: true,
-                    digits: true
-                },
-                month: {
+                cep: {
                     required: true
                 },
-                year: {
-                    required: true,
-                    digits: true
-                }
-            },
-            // Messages for form validation
-            messages: {
-                fname: {
-                    required: 'Please enter your first name'
+                residencia: {
+                    required: true
                 },
-                lname: {
-                    required: 'Please enter your last name'
+                anos_residencia: {
+                    required: true
+                },
+                telefone: {
+                    required: true
                 },
                 email: {
-                    required: 'Please enter your email address',
-                    email: 'Please enter a VALID email address'
+                    required: true
+                }
+            },
+            messages: {
+                nome_associado: {
+                    required: 'Informe o nome do associado'
                 },
-                phone: {
-                    required: 'Please enter your phone number'
+                cpf_associado: {
+                    required: 'Informe um CPF válido'
                 },
-                country: {
-                    required: 'Please select your country'
+                tipo_cota: {
+                    required: 'Informe o tipo da cota'
                 },
-                city: {
-                    required: 'Please enter your city'
+                data_expedicao: {
+                    required: 'Informe a data de expedição do RG'
                 },
-                code: {
-                    required: 'Please enter code',
-                    digits: 'Digits only please'
+                orgao_emissor: {
+                    required: 'Informe o órgão emissor do RG'
                 },
-                address: {
-                    required: 'Please enter your full address'
+                data_nascimento: {
+                    required: 'Informa a data de nascimento'
                 },
-                name: {
-                    required: 'Please enter name on your card'
+                naturalidade: {
+                    required: 'Informe a naturalidade'
                 },
-                card: {
-                    required: 'Please enter your card number'
+                estado: {
+                    required: 'Informe o estado de nascimento'
                 },
-                cvv: {
-                    required: 'Enter CVV2',
-                    digits: 'Digits only'
+                nome_pai: {
+                    required: 'Informe o nome do pai'
                 },
-                month: {
-                    required: 'Select month'
+                nome_mae: {
+                    required: 'Informe o nome da mãe'
                 },
-                year: {
-                    required: 'Enter year',
-                    digits: 'Digits only please'
+                sexo: {
+                    required: 'Informe o sexo'
+                },
+                escolaridade: {
+                    required: 'Informe a escolaridade'
+                },
+                estado_civil: {
+                    required: 'Informe o estado civil'
+                },
+                endereco_residencial: {
+                    required: 'Informe o endereço'
+                },
+                numero: {
+                    digits: 'Favor informar somente números'
+                },
+                bairro: {
+                    required: 'Informe o bairro'
+                },
+                cidade: {
+                    required: 'Informe a cidade'
+                },
+                cep: {
+                    required: 'Informe o CEP'
+                },
+                residencia: {
+                    required: 'Informe o tipo de residência'
+                },
+                anos_residencia: {
+                    required: 'Informe o tempo na residência'
+                },
+                telefone: {
+                    required: 'Informe um telefone de contato'
+                },
+                email: {
+                    required: 'Informe um endereço de e-mail'
                 }
             },
             // Do not change code below
@@ -266,311 +410,5 @@
                 error.insertAfter(element.parent());
             }
         });
-
-        var $registerForm = $("#smart-form-register").validate({
-            // Rules for form validation
-            rules: {
-                username: {
-                    required: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                password: {
-                    required: true,
-                    minlength: 3,
-                    maxlength: 20
-                },
-                passwordConfirm: {
-                    required: true,
-                    minlength: 3,
-                    maxlength: 20,
-                    equalTo: '#password'
-                },
-                firstname: {
-                    required: true
-                },
-                lastname: {
-                    required: true
-                },
-                gender: {
-                    required: true
-                },
-                terms: {
-                    required: true
-                }
-            },
-            // Messages for form validation
-            messages: {
-                login: {
-                    required: 'Please enter your login'
-                },
-                email: {
-                    required: 'Please enter your email address',
-                    email: 'Please enter a VALID email address'
-                },
-                password: {
-                    required: 'Please enter your password'
-                },
-                passwordConfirm: {
-                    required: 'Please enter your password one more time',
-                    equalTo: 'Please enter the same password as above'
-                },
-                firstname: {
-                    required: 'Please select your first name'
-                },
-                lastname: {
-                    required: 'Please select your last name'
-                },
-                gender: {
-                    required: 'Please select your gender'
-                },
-                terms: {
-                    required: 'You must agree with Terms and Conditions'
-                }
-            },
-            // Do not change code below
-            errorPlacement: function(error, element) {
-                error.insertAfter(element.parent());
-            }
-        });
-
-        var $reviewForm = $("#review-form").validate({
-            // Rules for form validation
-            rules: {
-                name: {
-                    required: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                review: {
-                    required: true,
-                    minlength: 20
-                },
-                quality: {
-                    required: true
-                },
-                reliability: {
-                    required: true
-                },
-                overall: {
-                    required: true
-                }
-            },
-            // Messages for form validation
-            messages: {
-                name: {
-                    required: 'Please enter your name'
-                },
-                email: {
-                    required: 'Please enter your email address',
-                    email: '<i class="fa fa-warning"></i><strong>Please enter a VALID email addres</strong>'
-                },
-                review: {
-                    required: 'Please enter your review'
-                },
-                quality: {
-                    required: 'Please rate quality of the product'
-                },
-                reliability: {
-                    required: 'Please rate reliability of the product'
-                },
-                overall: {
-                    required: 'Please rate the product'
-                }
-            },
-            // Do not change code below
-            errorPlacement: function(error, element) {
-                error.insertAfter(element.parent());
-            }
-        });
-
-        var $commentForm = $("#comment-form").validate({
-            // Rules for form validation
-            rules: {
-                name: {
-                    required: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                url: {
-                    url: true
-                },
-                comment: {
-                    required: true
-                }
-            },
-            // Messages for form validation
-            messages: {
-                name: {
-                    required: 'Enter your name',
-                },
-                email: {
-                    required: 'Enter your email address',
-                    email: 'Enter a VALID email'
-                },
-                url: {
-                    email: 'Enter a VALID url'
-                },
-                comment: {
-                    required: 'Please enter your comment'
-                }
-            },
-            // Ajax form submition
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    success: function() {
-                        $("#comment-form").addClass('submited');
-                    }
-                });
-            },
-            // Do not change code below
-            errorPlacement: function(error, element) {
-                error.insertAfter(element.parent());
-            }
-        });
-
-        var $contactForm = $("#contact-form").validate({
-            // Rules for form validation
-            rules: {
-                name: {
-                    required: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                message: {
-                    required: true,
-                    minlength: 10
-                }
-            },
-            // Messages for form validation
-            messages: {
-                name: {
-                    required: 'Please enter your name',
-                },
-                email: {
-                    required: 'Please enter your email address',
-                    email: 'Please enter a VALID email address'
-                },
-                message: {
-                    required: 'Please enter your message'
-                }
-            },
-            // Ajax form submition
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    success: function() {
-                        $("#contact-form").addClass('submited');
-                    }
-                });
-            },
-            // Do not change code below
-            errorPlacement: function(error, element) {
-                error.insertAfter(element.parent());
-            }
-        });
-
-        var $loginForm = $("#login-form").validate({
-            // Rules for form validation
-            rules: {
-                email: {
-                    required: true,
-                    email: true
-                },
-                password: {
-                    required: true,
-                    minlength: 3,
-                    maxlength: 20
-                }
-            },
-            // Messages for form validation
-            messages: {
-                email: {
-                    required: 'Please enter your email address',
-                    email: 'Please enter a VALID email address'
-                },
-                password: {
-                    required: 'Please enter your password'
-                }
-            },
-            // Do not change code below
-            errorPlacement: function(error, element) {
-                error.insertAfter(element.parent());
-            }
-        });
-
-        var $orderForm = $("#order-form").validate({
-            // Rules for form validation
-            rules: {
-                name: {
-                    required: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                phone: {
-                    required: true
-                },
-                interested: {
-                    required: true
-                },
-                budget: {
-                    required: true
-                }
-            },
-            // Messages for form validation
-            messages: {
-                name: {
-                    required: 'Please enter your name'
-                },
-                email: {
-                    required: 'Please enter your email address',
-                    email: 'Please enter a VALID email address'
-                },
-                phone: {
-                    required: 'Please enter your phone number'
-                },
-                interested: {
-                    required: 'Please select interested service'
-                },
-                budget: {
-                    required: 'Please select your budget'
-                }
-            },
-            // Do not change code below
-            errorPlacement: function(error, element) {
-                error.insertAfter(element.parent());
-            }
-        });
-
-        // START AND FINISH DATE
-        $('#startdate').datepicker({
-            dateFormat: 'dd.mm.yy',
-            prevText: '<i class="fa fa-chevron-left"></i>',
-            nextText: '<i class="fa fa-chevron-right"></i>',
-            onSelect: function(selectedDate) {
-                $('#finishdate').datepicker('option', 'minDate', selectedDate);
-            }
-        });
-
-        $('#finishdate').datepicker({
-            dateFormat: 'dd.mm.yy',
-            prevText: '<i class="fa fa-chevron-left"></i>',
-            nextText: '<i class="fa fa-chevron-right"></i>',
-            onSelect: function(selectedDate) {
-                $('#startdate').datepicker('option', 'maxDate', selectedDate);
-            }
-        });
-
-
-    }
-    ;
+    };
 </script>
