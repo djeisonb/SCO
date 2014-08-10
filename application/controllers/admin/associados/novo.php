@@ -107,6 +107,55 @@
             }
         }
         //**********************************************************************
+        
+        /**
+         * preenchimento_combo()
+         * 
+         * Função desenvolvida para preencher os diversos combobox na tela de 
+         * cadastro do sistema
+         * 
+         * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+         * @access      public
+         */
+        function preenchimento_combo()
+        {
+            $escolaridades = $this->buscar_escolaridades();
+            
+            $combo = array(
+                'escolaridades' => $escolaridades
+            );
+            
+            echo json_encode($combo);
+        }
+        //**********************************************************************
+        
+        /**
+         * buscar_escolaridades()
+         * 
+         * Função desenvolvida para buscar as escolaridades cadastradas
+         * 
+         * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+         * @access      private
+         * @return      array   Retorna um array com as escolaridades cadastradas
+         */
+        private function buscar_escolaridades()
+        {
+            $this->load->model('escolaridades_model', 'escolaridades');
+            
+            $escolaridades = $this->escolaridades->buscar();
+            
+            $opcao = '<option value="0" selected="" disabled="">Selecione uma opção</option>';
+            
+            foreach ($escolaridades as $row)
+            {
+                $opcao .= "
+                    <option value='$row->id'>$row->descricao</option>
+                ";
+            }
+            
+            return $opcao;
+        }
+        //**********************************************************************
     }
     /** End of File home.php **/
     /** Location ./application/controllers/admin/home.php **/

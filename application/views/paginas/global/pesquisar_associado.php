@@ -13,7 +13,7 @@
                 <br>
                 <form id="busca_associado">
                     <div class="input-group input-group-sm">
-                        <input class="form-control input-lg" type="text" placeholder="Digite o nome do associado..." id="search">
+                        <input class="form-control input-lg" type="text" placeholder="Digite o nome do associado..." id="search" autofocus="">
                         <div class="input-group-btn">
                             <button type="submit" class="btn btn-default">
                                 &nbsp;&nbsp;&nbsp;

@@ -134,8 +134,6 @@
                                     <section class="col col-6">
                                         <label class="select">
                                             <select name="escolaridade" id="escolaridade">
-                                                <option value="0" selected="" disabled="">Escolaridade</option>
-                                                <option value="1">Adicionar opções</option>
                                             </select> <i></i>
                                         </label>
                                     </section>
@@ -266,6 +264,10 @@
 
 <!-- SCRIPTS ON PAGE EVENT -->
 <script type="text/javascript">
+    
+    /** Chamada da função de preenchimento de combo **/
+    buscar_combo();
+    
 
     /** Funções globais do Framework **/
     pageSetUp();
@@ -420,7 +422,6 @@
                     required: 'Informe um endereço de e-mail'
                 }
             },
-            // Do not change code below
             errorPlacement: function(error, element) {
                 error.insertAfter(element.parent());
             },
@@ -443,5 +444,21 @@
     function salvar()
     {
         alert();
+    }
+    //**************************************************************************
+    
+    /**
+     * buscar_combo()
+     * 
+     * função desenvolvida para buscar as opções que irão popular as combobox
+     * 
+     * @author  :       Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+     * @todo    :       Setar para os outros elementos o retorno do PHP
+     */
+    function buscar_combo()
+    {
+        $.get('<?php echo app_baseurl().'admin/associados/novo/preenchimento_combo'?>', function(e){
+            $('#escolaridade').html(e.escolaridades);
+        }, "json");
     }
 </script>

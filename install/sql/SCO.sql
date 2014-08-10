@@ -74,7 +74,7 @@ COLLATE = latin1_swedish_ci;
 CREATE  TABLE IF NOT EXISTS `SCO`.`estados` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `sigla_estado` VARCHAR(2) NOT NULL ,
-  `nome_estado` VARCHAR(15) NOT NULL ,
+  `nome_estado` VARCHAR(30) NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1
