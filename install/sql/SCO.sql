@@ -2,7 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-DROP SCHEMA IF EXISTS `default_schema` ;
+DROP SCHEMA IF EXISTS `SCO` ;
 
 CREATE SCHEMA IF NOT EXISTS `SCO` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 
@@ -20,6 +20,7 @@ CREATE  TABLE IF NOT EXISTS `SCO`.`associados` (
   `data_nascimento` DATE NOT NULL ,
   `naturalidade` VARCHAR(50) NOT NULL ,
   `estado` INT(11) NOT NULL ,
+  `nacionalidade` INT(11) NOT NULL ,
   `nome_pai` VARCHAR(100) NOT NULL ,
   `nome_mae` VARCHAR(100) NOT NULL ,
   `sexo` VARCHAR(9) NOT NULL ,
@@ -35,11 +36,12 @@ CREATE  TABLE IF NOT EXISTS `SCO`.`associados` (
   `anos_residencia` INT(3) NOT NULL ,
   `telefone` VARCHAR(13) NOT NULL ,
   `celular` VARCHAR(13) NOT NULL ,
-  PRIMARY KEY (`id`, `tipo_cota`, `estado`, `escolaridade`, `tipo_residencia`) ,
+  PRIMARY KEY (`id`, `tipo_cota`, `estado`, `nacionalidade`, `escolaridade`, `tipo_residencia`) ,
   INDEX `fk_associados_tipo_cota1` (`tipo_cota` ASC) ,
   INDEX `fk_associados_estados1` (`estado` ASC) ,
   INDEX `fk_associados_escolaridades1` (`escolaridade` ASC) ,
   INDEX `fk_associados_tipo_residencia1` (`tipo_residencia` ASC) ,
+  INDEX `fk_associados_nacionalidade1` (`nacionalidade` ASC) ,
   CONSTRAINT `fk_associados_tipo_cota1`
     FOREIGN KEY (`tipo_cota` )
     REFERENCES `SCO`.`tipo_cota` (`id` )
@@ -58,6 +60,11 @@ CREATE  TABLE IF NOT EXISTS `SCO`.`associados` (
   CONSTRAINT `fk_associados_tipo_residencia1`
     FOREIGN KEY (`tipo_residencia` )
     REFERENCES `SCO`.`tipo_residencia` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_associados_nacionalidade1`
+    FOREIGN KEY (`nacionalidade` )
+    REFERENCES `SCO`.`nacionalidade` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -128,6 +135,14 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
+
+CREATE  TABLE IF NOT EXISTS `SCO`.`nacionalidade` (
+  `id` INT(11) NOT NULL ,
+  `descricao` VARCHAR(20) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1
+COLLATE = latin1_swedish_ci;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

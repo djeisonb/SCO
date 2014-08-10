@@ -96,24 +96,9 @@
                                         </label>
                                     </section>
                                     <section class="col col-6">
-                                        <label class="input">
-                                            <i class="icon-append fa fa-font"></i>
-                                            <input type="text" name="nome_pai" id="nome_pai" placeholder="Nome do pai">
-                                        </label>
-                                    </section>
-                                </div>
-                                
-                                <div class="row">
-                                    <section class="col col-6">
-                                        <label class="input">
-                                            <i class="icon-append fa fa-font"></i>
-                                            <input type="text" name="nome_mae" id="nome_mae" placeholder="Nome da mãe">
-                                        </label>
-                                    </section>
-                                    <section class="col col-6">
                                         <label class="select">
-                                            <select name="sexo" id="sexo">
-                                                <option value="0" selected="" disabled="">Sexo</option>
+                                            <select name="nacionalidade" id="nacionalidade">
+                                                <option value="0" selected="" disabled="">Nacionalidade</option>
                                                 <option value="1">Masculino</option>
                                                 <option value="2">Feminino</option>
                                             </select> <i></i>
@@ -123,6 +108,30 @@
                                 
                                 <div class="row">
                                     <section class="col col-6">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-font"></i>
+                                            <input type="text" name="nome_pai" id="nome_pai" placeholder="Nome do pai">
+                                        </label>
+                                    </section>
+                                    <section class="col col-6">
+                                        <label class="input">
+                                            <i class="icon-append fa fa-font"></i>
+                                            <input type="text" name="nome_mae" id="nome_mae" placeholder="Nome da mãe">
+                                        </label>
+                                    </section>
+                                </div>
+                                
+                                <div class="row">
+                                    <section class="col col-6">
+                                        <label class="select">
+                                            <select name="sexo" id="sexo">
+                                                <option value="0" selected="" disabled="">Sexo</option>
+                                                <option value="1">Masculino</option>
+                                                <option value="2">Feminino</option>
+                                            </select> <i></i>
+                                        </label>
+                                    </section>
+                                    <section class="col col-6">
                                         <label class="select">
                                             <select name="escolaridade" id="escolaridade">
                                                 <option value="0" selected="" disabled="">Escolaridade</option>
@@ -130,6 +139,9 @@
                                             </select> <i></i>
                                         </label>
                                     </section>
+                                </div>
+                                
+                                <div class="row">
                                     <section class="col col-6">
                                         <label class="select">
                                             <select name="estado_civil" id="estado_civil">
@@ -138,22 +150,22 @@
                                             </select> <i></i>
                                         </label>
                                     </section>
-                                </div>
-                                
-                                <div class="row">
-                                    <section class="col col-4">
+                                    <section class="col col-6">
                                         <label class="input">
                                             <i class="icon-append fa fa-home"></i>
                                             <input type="text" name="endereco_residencial" id="endereco_residencial" placeholder="Endereço residencial">
                                         </label>
                                     </section>
-                                    <section class="col col-4">
+                                </div>
+                                
+                                <div class="row">
+                                    <section class="col col-6">
                                         <label class="input">
                                             <i class="icon-append fa fa-sort-numeric-asc"></i>
                                             <input type="text" name="numero" id="numero" placeholder="Número">
                                         </label>
                                     </section>
-                                    <section class="col col-4">
+                                    <section class="col col-6">
                                         <label class="input">
                                             <i class="icon-append fa fa-font"></i>
                                             <input type="text" name="complemento" id="complemento" placeholder="Complemento">
@@ -255,18 +267,15 @@
 <!-- SCRIPTS ON PAGE EVENT -->
 <script type="text/javascript">
 
-    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    /** Funções globais do Framework **/
     pageSetUp();
 
-
-    // PAGE RELATED SCRIPTS
-
-    // Load form valisation dependency 
-    loadScript("./js/plugin/jquery-validate/jquery.validate.min.js", runFormValidation);
+    /** Chamada do arquivo de validação de formulário **/
+    loadScript("./js/plugin/jquery-validate/jquery.validate.min.js", validarFormulario);
 
 
-    // Registration validation script
-    function runFormValidation() {
+    /** Script para validação do formulário de cadastro **/
+    function validarFormulario() {
 
         var cadastro = $('#cadastro_usuario').validate({
             rules: {
@@ -292,6 +301,9 @@
                     required: true
                 },
                 estado: {
+                    required: true
+                },
+                nacionalidade: {
                     required: true
                 },
                 nome_pai: {
@@ -362,6 +374,9 @@
                 estado: {
                     required: 'Informe o estado de nascimento'
                 },
+                nacionalidade: {
+                    required: 'Favor fornecer uma nacionalidade'
+                },
                 nome_pai: {
                     required: 'Informe o nome do pai'
                 },
@@ -408,7 +423,25 @@
             // Do not change code below
             errorPlacement: function(error, element) {
                 error.insertAfter(element.parent());
+            },
+            submitHandler: function(){
+                salvar();
             }
         });
     };
+    //**************************************************************************
+    
+    /**
+     * salvar()
+     * 
+     * Função desenvolvida para salvar os dados do novo associado
+     * 
+     * @author  :       Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+     * @date    :       10/08/2014
+     * @version :       v0.1.0
+     */
+    function salvar()
+    {
+        alert();
+    }
 </script>

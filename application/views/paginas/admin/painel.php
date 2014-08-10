@@ -113,7 +113,7 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="index.php?/admin/associados/pesquisar">
+                        <a href="index.php?/global/pesquisar">
                             <i class="fa fa-lg fa-fw fa-search"></i> Pesquisar Cadastrados
                         </a>
                     </li>
