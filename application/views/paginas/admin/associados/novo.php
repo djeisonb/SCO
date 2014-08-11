@@ -43,11 +43,6 @@
                                     <section class="col col-6">
                                         <label class="select">
                                             <select name="tipo_cota" id="tipo_cota">
-                                                <option value="0" selected="" disabled="">Tipo de Cota</option>
-                                                <option value="1">Proprietário</option>
-                                                <option value="2">Benemérito</option>
-                                                <option value="3">Contribuinte</option>
-                                                <option value="4">Temporário</option>
                                             </select> <i></i>
                                         </label>
                                     </section>
@@ -90,17 +85,14 @@
                                 
                                 <div class="row">
                                     <section class="col col-6">
-                                        <label class="input">
-                                            <i class="icon-append fa fa-map-marker"></i>
-                                            <input type="text" name="estado" id="estado" placeholder="Estado">
+                                        <label class="select">
+                                            <select name="estado" id="estado">
+                                            </select> <i></i>
                                         </label>
                                     </section>
                                     <section class="col col-6">
                                         <label class="select">
                                             <select name="nacionalidade" id="nacionalidade">
-                                                <option value="0" selected="" disabled="">Nacionalidade</option>
-                                                <option value="1">Masculino</option>
-                                                <option value="2">Feminino</option>
                                             </select> <i></i>
                                         </label>
                                     </section>
@@ -143,8 +135,6 @@
                                     <section class="col col-6">
                                         <label class="select">
                                             <select name="estado_civil" id="estado_civil">
-                                                <option value="0" selected="" disabled="">Estado Civil</option>
-                                                <option value="1">Adicionar opções</option>
                                             </select> <i></i>
                                         </label>
                                     </section>
@@ -195,9 +185,7 @@
                                     </section>
                                     <section class="col col-6">
                                         <label class="select">
-                                            <select name="residencia" id="residencia">
-                                                <option value="0" selected="" disabled="">Tipo de residência</option>
-                                                <option value="1">Adicionar opções</option>
+                                            <select name="tipo_residencia" id="tipo_residencia">
                                             </select> <i></i>
                                         </label>
                                     </section>
@@ -213,7 +201,7 @@
                                     <section class="col col-4">
                                         <label class="input">
                                             <i class="icon-append fa fa-phone"></i>
-                                            <input type="text" name="telefone" name="telefone" placeholder="Telefone fixo" data-mask="(99)9999-9999" data-mask-placeholder='*'>
+                                            <input type="text" name="telefone" id="telefone" placeholder="Telefone fixo" data-mask="(99)9999-9999" data-mask-placeholder='*'>
                                         </label>
                                     </section>
                                     <section class="col col-4">
@@ -268,7 +256,9 @@
     /** Chamada da função de preenchimento de combo **/
     buscar_combo();
     
-
+    /** Carrega o script responsável pela validação de cpf **/
+    loadScript('./js/validacao/valida_cpf.js');
+    
     /** Funções globais do Framework **/
     pageSetUp();
 
@@ -338,7 +328,7 @@
                 cep: {
                     required: true
                 },
-                residencia: {
+                tipo_residencia: {
                     required: true
                 },
                 anos_residencia: {
@@ -409,7 +399,7 @@
                 cep: {
                     required: 'Informe o CEP'
                 },
-                residencia: {
+                tipo_residencia: {
                     required: 'Informe o tipo de residência'
                 },
                 anos_residencia: {
@@ -443,7 +433,50 @@
      */
     function salvar()
     {
-        alert();
+        $.ajax({
+            url : '<?php echo app_baseurl().'admin/associados/novo/salvar'?>',
+            type : "POST",
+            data: {
+                nome_associado: $('#nome_associado').val(),
+                cpf_associado: $('#cpf_associado').val(),
+                tipo_cota: $('#tipo_cota').val(),
+                numero_identidade: $('#numero_identidade').val(),
+                data_expedicao: $('#data_expedicao').val(),
+                orgao_emissor: $('#orgao_emissor').val(),
+                data_nascimento: $('#data_nascimento').val(),
+                naturalidade: $('#naturalidade').val(),
+                estado: $('#estado').val(),
+                nacionalidade: $('#nacionalidade').val(),
+                nome_pai: $('#nome_pai').val(),
+                nome_mae: $('#nome_mae').val(),
+                sexo: $('#sexo').val(),
+                escolaridade: $('#escolaridade').val(),
+                estado_civil: $('#estado_civil').val(),
+                endereco_residencial: $('#endereco_residencial').val(),
+                numero: $('#numero').val(),
+                complemento: $('#complemento').val(),
+                bairro: $('#bairro').val(),
+                cidade: $('#cidade').val(),
+                cep: $('#cep').val(),
+                tipo_residencia: $('#tipo_residencia').val(),
+                anos_residencia: $('#anos_residencia').val(),
+                telefone: $('#telefone').val(),
+                celular: $('#celular').val(),
+                email: $('#email').val()
+            },
+            dataType: "html",
+            success: function(e)
+            {
+                if(e == 1)
+                {
+                    msg_sucesso('salvou');
+                }
+                else
+                {
+                    msg_erro('Não salvou');
+                }
+            }
+        });
     }
     //**************************************************************************
     
@@ -458,7 +491,31 @@
     function buscar_combo()
     {
         $.get('<?php echo app_baseurl().'admin/associados/novo/preenchimento_combo'?>', function(e){
+            $('#tipo_cota').html(e.tipo_cota);
             $('#escolaridade').html(e.escolaridades);
+            $('#estado_civil').html(e.estado_civil);
+            $('#estado').html(e.estados);
+            $('#nacionalidade').html(e.nacionalidade);
+            $('#tipo_residencia').html(e.residencia);
         }, "json");
     }
+    
+    /**
+     * verifica_cpf()
+     * 
+     * Função desenvolvida para verificar a validade de um cpf
+     * 
+     * @author  :       Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+     */
+    $('#cpf_associado').blur(function(){
+        cpf = $(this).val();
+        
+        if(validarCPF(cpf) == false)
+        {
+            msg_erro('CPF inválido');
+            
+            $(this).val("");
+        }
+    });
+    //**************************************************************************
 </script>

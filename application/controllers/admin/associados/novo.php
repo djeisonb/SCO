@@ -30,6 +30,9 @@
         public function __construct()
         {
             parent::__construct(TRUE);
+            
+            $this->load->library('combo_library');
+            $this->load->model('associados_model', 'associados');
         }
         //**********************************************************************
         
@@ -48,67 +51,6 @@
         //**********************************************************************
         
         /**
-         * valida_cpf()
-         * 
-         * Função desenvolvida para validação de CPF
-         * 
-         * @author      Gerador de CPF
-         * @access      public
-         * @param       string $cpf Contém o CPF a ser validado
-         * @see         http://www.geradorcpf.com/script-validar-cpf-php.htm
-         */
-        function valida_cpf($cpf = NULL)
-        {
-            // Verifica se um número foi informado
-            if(empty($cpf)) {
-                return false;
-            }
- 
-            // Elimina possivel mascara
-            $cpf = ereg_replace('[^0-9]', '', $cpf);
-            $cpf = str_pad($cpf, 11, '0', STR_PAD_LEFT);
-     
-            // Verifica se o numero de digitos informados é igual a 11 
-            if (strlen($cpf) != 11) {
-                return false;
-            }
-    
-            // Verifica se nenhuma das sequências invalidas abaixo 
-            // foi digitada. Caso afirmativo, retorna falso
-            else if ($cpf == '00000000000' || 
-                $cpf == '11111111111' || 
-                $cpf == '22222222222' || 
-                $cpf == '33333333333' || 
-                $cpf == '44444444444' || 
-                $cpf == '55555555555' || 
-                $cpf == '66666666666' || 
-                $cpf == '77777777777' || 
-                $cpf == '88888888888' || 
-                $cpf == '99999999999') {
-                return false;
-             // Calcula os digitos verificadores para verificar se o
-             // CPF é válido
-            }
-            else
-            {
-         
-                for ($t = 9; $t < 11; $t++)
-                {
-
-                    for ($d = 0, $c = 0; $c < $t; $c++) {
-                        $d += $cpf{$c} * (($t + 1) - $c);
-                    }
-                    $d = ((10 * $d) % 11) % 10;
-                    if ($cpf{$c} != $d) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-        }
-        //**********************************************************************
-        
-        /**
          * preenchimento_combo()
          * 
          * Função desenvolvida para preencher os diversos combobox na tela de 
@@ -119,10 +61,20 @@
          */
         function preenchimento_combo()
         {
-            $escolaridades = $this->buscar_escolaridades();
+            $escolaridades  = $this->combo_library->buscar_escolaridades();
+            $estados        = $this->combo_library->buscar_estados();
+            $nacionalidade  = $this->combo_library->buscar_nacionalidade();
+            $cota           = $this->combo_library->buscar_cota();
+            $estado_civil   = $this->combo_library->estado_civil();
+            $residencia     = $this->combo_library->busca_residencia();
             
             $combo = array(
-                'escolaridades' => $escolaridades
+                'escolaridades' => $escolaridades,
+                'estados'       => $estados,
+                'nacionalidade' => $nacionalidade,
+                'tipo_cota'     => $cota,
+                'estado_civil'  => $estado_civil,
+                'residencia'    => $residencia
             );
             
             echo json_encode($combo);
@@ -130,30 +82,46 @@
         //**********************************************************************
         
         /**
-         * buscar_escolaridades()
+         * salvar()
          * 
-         * Função desenvolvida para buscar as escolaridades cadastradas
+         * Função desenvolvida para salvar os dados de um novo associado
          * 
          * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
-         * @access      private
-         * @return      array   Retorna um array com as escolaridades cadastradas
+         * @access      public
+         * @todo        Converter as datas passadas pelo usuário para o padrão
+         *              MYSQL
          */
-        private function buscar_escolaridades()
+        function salvar()
         {
-            $this->load->model('escolaridades_model', 'escolaridades');
+            /** Dados do associados que serão salvos **/
+            $dados['nome_associado']        = $this->input->post('nome_associado');
+            $dados['cpf_associado']         = $this->input->post('cpf_associado');
+            $dados['tipo_cota']             = $this->input->post('tipo_cota');
+            $dados['numero_identidade']     = $this->input->post('numero_identidade');
+            $dados['data_expedicao']        = $this->input->post('data_expedicao');
+            $dados['orgao_emissor']         = $this->input->post('orgao_emissor');
+            $dados['data_nascimento']       = $this->input->post('data_nascimento');
+            $dados['naturalidade']          = $this->input->post('naturalidade');
+            $dados['estado']                = $this->input->post('estado');
+            $dados['nacionalidade']         = $this->input->post('nacionalidade');
+            $dados['nome_pai']              = $this->input->post('nome_pai');
+            $dados['nome_mae']              = $this->input->post('nome_mae');
+            $dados['sexo']                  = $this->input->post('sexo');
+            $dados['escolaridade']          = $this->input->post('escolaridade');
+            $dados['estado_civil']          = $this->input->post('estado_civil');
+            $dados['endereco_residencial']  = $this->input->post('endereco_residencial');
+            $dados['numero']                = $this->input->post('numero');
+            $dados['complemento']           = $this->input->post('complemento');
+            $dados['bairro']                = $this->input->post('bairro');
+            $dados['cidade']                = $this->input->post('cidade');
+            $dados['cep']                   = $this->input->post('cep');
+            $dados['tipo_residencia']       = $this->input->post('tipo_residencia');
+            $dados['anos_residencia']       = $this->input->post('anos_residencia');
+            $dados['telefone']              = $this->input->post('telefone');
+            $dados['celular']               = $this->input->post('celular');
+            $dados['email']                 = $this->input->post('email');
             
-            $escolaridades = $this->escolaridades->buscar();
-            
-            $opcao = '<option value="0" selected="" disabled="">Selecione uma opção</option>';
-            
-            foreach ($escolaridades as $row)
-            {
-                $opcao .= "
-                    <option value='$row->id'>$row->descricao</option>
-                ";
-            }
-            
-            return $opcao;
+            echo $this->associados->salvar($dados);
         }
         //**********************************************************************
     }

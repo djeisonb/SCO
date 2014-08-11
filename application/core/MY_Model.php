@@ -86,9 +86,9 @@
          * @param       array $dados Contém os dados que serão salvos
          * @return      Retorna TRUE se salvar e FALSE se não salvar
          */
-        function insert($dados)
+        private function insert($dados)
         {   
-            $dados = array_map('mysql_escape_string', $dados);
+            $dados = array_map('mysql_real_escape_string', $dados);
             
             return $this->BD->insert($this->_tabela, $dados);
         }
