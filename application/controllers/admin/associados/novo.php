@@ -98,9 +98,9 @@
             $dados['cpf_associado']         = $this->input->post('cpf_associado');
             $dados['tipo_cota']             = $this->input->post('tipo_cota');
             $dados['numero_identidade']     = $this->input->post('numero_identidade');
-            $dados['data_expedicao']        = $this->input->post('data_expedicao');
+            $dados['data_expedicao']        = implode('-', array_reverse(explode("/", $this->input->post('data_expedicao'))));
             $dados['orgao_emissor']         = $this->input->post('orgao_emissor');
-            $dados['data_nascimento']       = $this->input->post('data_nascimento');
+            $dados['data_nascimento']       = implode('-', array_reverse(explode("/", $this->input->post('data_nascimento'))));
             $dados['naturalidade']          = $this->input->post('naturalidade');
             $dados['estado']                = $this->input->post('estado');
             $dados['nacionalidade']         = $this->input->post('nacionalidade');
