@@ -43,7 +43,7 @@
                     </section>
                 </fieldset>
                 <footer>
-                    <button type="submit" class="btn btn-primary">
+                    <button id="entrar" type="submit" class="btn btn-primary" data-loading-text="Acessando o sistema...">
                         Entrar
                     </button>
                 </footer>
@@ -62,6 +62,8 @@
         $('#login-form').submit(function(e){
             e.preventDefault();
             
+            $('#entrar').button('loading');
+            
             usuario = $('#usuario').val();
             senha   = $('#senha').val();
             
@@ -75,6 +77,7 @@
                     if(sucesso.erro)
                     {
                         msg_erro(sucesso.erro);
+                        $('#entrar').button('reset');
                     }
                     if(sucesso.grupo)
                     {
@@ -85,6 +88,7 @@
                 error: function()
                 {
                     msg_erro('Ocorreu um erro. Tente mais tarde');
+                    $('#entrar').button('reset');
                 }
             });
         });

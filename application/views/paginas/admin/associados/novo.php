@@ -118,8 +118,8 @@
                                         <label class="select">
                                             <select name="sexo" id="sexo">
                                                 <option value="0" selected="" disabled="">Sexo</option>
-                                                <option value="1">Masculino</option>
-                                                <option value="2">Feminino</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Feminino">Feminino</option>
                                             </select> <i></i>
                                         </label>
                                     </section>

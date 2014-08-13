@@ -29,7 +29,7 @@
                     foreach($associados as $row)
                     {
                         ?>
-                        <tr class="click">
+                        <tr class="click" data-id="<?php echo $row->id?>">
                             <td>
                                 <?php echo $row->nome_associado?>
                             </td>
@@ -50,3 +50,12 @@
         </table>
         <?php
     }
+?>
+<script type="text/javascript">
+    $('tr.click').click(function(){
+        
+        url = '<?php echo app_baseurl().'global/perfil_associado/index/'?>'+ $(this).data('id');
+        
+        loadAjax(url);
+    });
+</script>

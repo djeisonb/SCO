@@ -50,8 +50,13 @@
         {
             $search = mysql_real_escape_string($search);
             
-            $this->BD->select('nome_associado, tipo_cota, data_adesao');
             $this->BD->like('nome_associado', $search, 'both');
+            $this->BD->join('tipo_cota', 'associados.tipo_cota = tipo_cota.id');
+            $this->BD->join('estados', 'associados.estado = estados.id');
+            $this->BD->join('nacionalidade', 'associados.nacionalidade = nacionalidade.id');
+            $this->BD->join('escolaridades', 'associados.escolaridade = escolaridades.id');
+            $this->BD->join('estado_civil', 'associados.estado_civil = estado_civil.id');
+            $this->BD->join('tipo_residencia', 'associados.tipo_residencia = tipo_residencia.id');
             
             return parent::buscar();
         }

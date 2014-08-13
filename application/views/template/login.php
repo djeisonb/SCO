@@ -47,12 +47,6 @@
         <!-- MAIN APP JS FILE -->
         <script src="js/app.min.js"></script>
         
-        <!-- BlockUI -->
-        <script src="./js/blockUi/blockUI.js"></script>
-        
-        <!-- Configurações do Ajax -->
-        <script src="./js/ajaxSetup.js"></script>
-        
         <script type="text/javascript">
             loadScript('./js/pentaurea.js');
         </script>
