@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     /**
-     * comboLibrary.php
+     * combo_library.php
      * 
      * Contém a classe combo
      * 
@@ -40,7 +40,7 @@
             foreach ($escolaridades as $row)
             {
                 $opcao .= "
-                    <option value='$row->id'>$row->descricao</option>
+                    <option value='$row->id'>$row->escolaridade</option>
                 ";
             }
             
@@ -70,7 +70,7 @@
             foreach ($estados as $row)
             {
                 $opcao .= "
-                    <option value='$row->id'>$row->nome_estado - $row->sigla_estado</option>
+                    <option value='$row->id'>$row->estado</option>
                 ";
             }
             
@@ -100,7 +100,7 @@
             foreach($nacionalidades as $row)
             {
                 $opcao .= "
-                    <option value='$row->id'>$row->descricao</options>
+                    <option value='$row->id'>$row->nacionalidade</options>
                 ";
             }
             
@@ -160,7 +160,7 @@
             foreach ($estado_civil as $row)
             {
                 $opcao .= "
-                    <option value='$row->id'>$row->descricao</option>
+                    <option value='$row->id'>$row->estado_civil</option>
                 ";
             }
             
@@ -190,7 +190,7 @@
             foreach ($residencia as $row)
             {
                 $opcao .= "
-                    <option value='$row->id'>$row->descricao</option>
+                    <option value='$row->id'>$row->tipo_residencia</option>
                 ";
             }
             

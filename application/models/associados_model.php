@@ -50,15 +50,7 @@
         {
             $search = mysql_real_escape_string($search);
             
-            $this->BD->like('nome_associado', $search, 'both');
-            $this->BD->join('tipo_cota', 'associados.tipo_cota = tipo_cota.id');
-            $this->BD->join('estados', 'associados.estado = estados.id');
-            $this->BD->join('nacionalidade', 'associados.nacionalidade = nacionalidade.id');
-            $this->BD->join('escolaridades', 'associados.escolaridade = escolaridades.id');
-            $this->BD->join('estado_civil', 'associados.estado_civil = estado_civil.id');
-            $this->BD->join('tipo_residencia', 'associados.tipo_residencia = tipo_residencia.id');
-            
-            return parent::buscar();
+            return $this->BD->query("SELECT associados.id_associado, associados.nome_associado, associados.data_adesao, tipo_cota.tipo_cota FROM associados, tipo_cota WHERE nome_associado LIKE '%$search%' and associados.tipo_cota = tipo_cota.id ORDER BY associados.nome_associado")->result();
         }
         //**********************************************************************
         
@@ -104,6 +96,33 @@
             );
             
             return parent::salvar($data);
+        }
+        //**********************************************************************
+        
+        /**
+         * buscar_byId()
+         * 
+         * Função desenvolvida para buscar os dados de um usuário pelo ID
+         * 
+         * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+         * @access      public
+         * @param       int $id Contém o ID do registro a ser buscado
+         * @return      array Retorna um array com os dados do usuário
+         */
+        function buscar_byId($id)
+        {
+            $id = mysql_real_escape_string($id);
+            
+            
+            $this->BD->where('associados.id_associado', $id);
+            $this->BD->join('tipo_cota', 'associados.tipo_cota = tipo_cota.id');
+            $this->BD->join('estados', 'associados.estado = estados.id');
+            $this->BD->join('nacionalidade', 'associados.nacionalidade = nacionalidade.id');
+            $this->BD->join('escolaridades', 'associados.escolaridade = escolaridades.id');
+            $this->BD->join('estado_civil', 'associados.estado_civil = estado_civil.id');
+            $this->BD->join('tipo_residencia', 'associados.tipo_residencia = tipo_residencia.id');
+            
+            return parent::buscar();
         }
         //**********************************************************************
     }

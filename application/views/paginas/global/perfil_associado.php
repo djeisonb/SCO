@@ -26,11 +26,11 @@
                 <!--*********************************************************-->
                 
                 <!-- Corpo do widget -->
-                <div class="no-padding">
-                    <div class="widget-body">
+                <div>
+                    <div class="widget-body no-padding">
                         <div id="abasConteudo" class="tab-content">
                             <!-- Div que exibirá os dados pessoais do associado selecionado. -->
-                            <div class="tab-pane fade active in padding-10 no-padding-bottom" id="dados_pessoais"></div>
+                            <div class="tab-pane fade active in" id="dados_pessoais"></div>
                             <!--*********************************************-->
                             
                             <!-- Div que exibirá as mensalidades do associado -->
@@ -83,4 +83,10 @@
     $("#inbox-table input[type='checkbox']").change(function() {
         $(this).closest('tr').toggleClass("highlight", this.checked);
     });
+    //**************************************************************************
+    
+    /** Chamada que irá buscar os dados pessoais do usuário **/
+    urlDadosPessoais = '<?php echo app_baseurl().'global/perfil_associado/buscar_dadosPessoais/'.$id?>';
+    loadAjax(urlDadosPessoais, $('#dados_pessoais'));
+    //**************************************************************************
 </script>
