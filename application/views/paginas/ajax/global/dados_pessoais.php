@@ -40,9 +40,8 @@
                         <section class="col col-6">
                             <label class="control-label">Categoria da cota</label>
                             <label class="select">
-                                <select name="tipo_cota" id="tipo_cota" disabled="">
-                                    <option value="" selected=""><?php echo $row->tipo_cota?></option>
-                                </select> <i></i>
+                                <select name="tipo_cota" id="tipo_cota" disabled=""></select> <i></i>
+                                <input type="hidden" id="tipoCota_cadastrada" value="<?php echo $row->tipo_cota?>">
                             </label>
                         </section>
                         <section class="col col-6">
@@ -91,17 +90,15 @@
                         <section class="col col-6">
                             <label class="control-label">Estado</label>
                             <label class="select">
-                                <select name="estado" id="estado" disabled="">
-                                    <option value="" selected=""><?php echo $row->estado?></option>
-                                </select> <i></i>
+                                <select name="estado" id="estado" disabled=""></select> <i></i>
+                                <input type="hidden" id="estado_cadastrado" value="<?php echo $row->estado?>">
                             </label>
                         </section>
                         <section class="col col-6">
                             <label class="control-label">nacionalidade</label>
                             <label class="select">
-                                <select name="nacionalidade" id="nacionalidade" disabled="">
-                                    <option value="" selected=""><?php echo $row->nacionalidade?></option>
-                                </select> <i></i>
+                                <select name="nacionalidade" id="nacionalidade" disabled=""></select> <i></i>
+                                <input type="hidden" id="nacionalidade_cadastrada" value="<?php echo $row->nacionalidade?>">
                             </label>
                         </section>
                     </div>
@@ -132,14 +129,14 @@
                                     <option value="Masculino">Masculino</option>
                                     <option value="Feminino">Feminino</option>
                                 </select> <i></i>
+                                <input type="hidden" id="sexo_cadastrado" value="<?php echo $row->sexo?>">
                             </label>
                         </section>
                         <section class="col col-6">
                             <label class="control-label">Escolaridade</label>
                             <label class="select">
-                                <select name="escolaridade" id="escolaridade" disabled="">
-                                    <option value="" selected=""><?php echo $row->escolaridade?></option>
-                                </select> <i></i>
+                                <select name="escolaridade" id="escolaridade" disabled=""></select> <i></i>
+                                <input type="hidden" id="escolaridade_cadastrada" value="<?php echo $row->escolaridade?>">
                             </label>
                         </section>
                     </div>
@@ -148,9 +145,8 @@
                         <section class="col col-6">
                             <label class="control-label">Estado Civil</label>
                             <label class="select">
-                                <select name="estado_civil" id="estado_civil" disabled="">
-                                    <option value="" selected=""><?php echo $row->estado_civil?></option>
-                                </select> <i></i>
+                                <select name="estado_civil" id="estado_civil" disabled=""></select> <i></i>
+                                <input type="hidden" id="estadoCivil_cadastrado" value="<?php echo $row->estado_civil?>">
                             </label>
                         </section>
                         <section class="col col-6">
@@ -207,9 +203,8 @@
                         <section class="col col-6">
                             <label class="control-label">Tipo de residência</label>
                             <label class="select">
-                                <select name="tipo_residencia" id="tipo_residencia" disabled="">
-                                    <option value="" selected=""><?php echo $row->tipo_residencia?></option>
-                                </select> <i></i>
+                                <select name="tipo_residencia" id="tipo_residencia" disabled=""></select> <i></i>
+                                <input type="hidden" id="tipoResidencia_cadastrada" value="<?php echo $row->tipo_residencia?>">
                             </label>
                         </section>
                     </div>
@@ -270,9 +265,11 @@
     }
 ?>
 <script type="text/javascript">
+    /** Chama a função que busca as combobox cadastradas **/
+    buscar_combo();
+    
     /** Variável que vai receber um valor caso o campo **/
     var modificado = '';
-    //$('#dados_usuario').
     
     /** Função desenvolvida para habilitar os campos para edição dos dados do usuário **/
     $('#trigger_alterar').click(function(e){
@@ -297,6 +294,7 @@
                     if(e == 'Não')
                     {
                         buscar_dadosPessoais();
+                        buscar_combo();
                         modificado = 0;
                         return false;
                     }
@@ -324,4 +322,53 @@
      * Função desenvolvida para salvar as alteraçoes realizadas no cadastro do 
      * usuário
      */
+    
+    /**
+     * buscar_combo()
+     * 
+     * função desenvolvida para buscar as opções que irão popular as combobox
+     * 
+     * @author  :       Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+     */
+    function buscar_combo()
+    {
+        $.get('<?php echo app_baseurl().'admin/associados/novo/preenchimento_combo'?>', function(e){
+            $('#tipo_cota').html(e.tipo_cota);
+            $('#estado').html(e.estados);
+            $('#nacionalidade').html(e.nacionalidade);
+            $('#escolaridade').html(e.escolaridades);
+            $('#estado_civil').html(e.estado_civil);
+            $('#tipo_residencia').html(e.residencia);
+        }, "json").done(function(){
+            verifica_checkbox($('#tipo_cota'), $('#tipoCota_cadastrada'));
+            verifica_checkbox($('#estado'), $('#estado_cadastrado'));
+            verifica_checkbox($('#nacionalidade'), $('#nacionalidade_cadastrada'));
+            verifica_checkbox($('#sexo'), $('#sexo_cadastrado'));
+            verifica_checkbox($('#escolaridade'), $('#escolaridade_cadastrada'));
+            verifica_checkbox($('#estado_civil'), $('#estadoCivil_cadastrado'));
+            verifica_checkbox($('#tipo_residencia'), $('#tipoResidencia_cadastrada'));
+        });
+        
+    }
+    //**************************************************************************
+    
+    /**
+     * verifica_checkbox()
+     * 
+     * Função desenvolvida para marcar o checkbox que foi selecionado pelo usuário
+     * 
+     * @author  :   Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+     * @param   :   {string} elemento   Contém o DOM da checkbox
+     * @param   :   {string} comparador Contém o DOM do elemento que erá verificado
+     */
+    function verifica_checkbox(elemento, comparador)
+    {
+        elemento.find('option').each(function(){
+            if($(this).text() == comparador.val())
+            {
+                $(this).prop('selected', true);
+            }
+        });
+    }
+    //**************************************************************************
 </script>
