@@ -17,7 +17,7 @@
         foreach ($pessoais as $row)
         {
             ?>
-            <form id="cadastro_usuario" class="smart-form" novalidate="novalidate">
+            <form id="dados_usuario" class="smart-form" novalidate="novalidate">
                 <fieldset>
                     <div class="row">
                         <section class="col col-6">
@@ -39,8 +39,8 @@
                     <div class="row">
                         <section class="col col-6">
                             <label class="control-label">Categoria da cota</label>
-                            <label class="select" disabled="">
-                                <select name="tipo_cota" id="tipo_cota">
+                            <label class="select">
+                                <select name="tipo_cota" id="tipo_cota" disabled="">
                                     <option value="" selected=""><?php echo $row->tipo_cota?></option>
                                 </select> <i></i>
                             </label>
@@ -91,7 +91,7 @@
                         <section class="col col-6">
                             <label class="control-label">Estado</label>
                             <label class="select">
-                                <select name="estado" id="estado">
+                                <select name="estado" id="estado" disabled="">
                                     <option value="" selected=""><?php echo $row->estado?></option>
                                 </select> <i></i>
                             </label>
@@ -99,7 +99,7 @@
                         <section class="col col-6">
                             <label class="control-label">nacionalidade</label>
                             <label class="select">
-                                <select name="nacionalidade" id="nacionalidade">
+                                <select name="nacionalidade" id="nacionalidade" disabled="">
                                     <option value="" selected=""><?php echo $row->nacionalidade?></option>
                                 </select> <i></i>
                             </label>
@@ -257,7 +257,9 @@
                             <button type="submit" class="btn btn-primary" disabled="">
                                 Salvar associado
                             </button>
-                            <a class="btn btn-default">Alterar</a>
+                            <a id="trigger_alterar" class="btn btn-default" data-action="editar">
+                                Alterar
+                            </a>
                         </footer>
                         <?php
                     }
@@ -266,3 +268,60 @@
             <?php
         }
     }
+?>
+<script type="text/javascript">
+    /** Variável que vai receber um valor caso o campo **/
+    var modificado = '';
+    //$('#dados_usuario').
+    
+    /** Função desenvolvida para habilitar os campos para edição dos dados do usuário **/
+    $('#trigger_alterar').click(function(e){
+        e.preventDefault();
+        
+        if($(this).data('action') == 'editar')
+        {
+            $(this).html('Cancelar edição').data('action', 'cancelar');
+            $('#dados_usuario').find('input, select').prop('disabled', false);
+        }
+        else
+        {
+            $(this).html('Alterar').data('action', 'editar');
+            
+            if(modificado > 1)
+            {
+                $.SmartMessageBox({
+                    title: 'Atenção',
+                    content: 'Você realizou mudanças no cadastro. Deseja salvar?',
+                    buttons: '[Não][Sim]'
+                }, function(e){
+                    if(e == 'Não')
+                    {
+                        buscar_dadosPessoais();
+                        modificado = 0;
+                        return false;
+                    }
+                    else
+                    {
+                        alert('Os dados serão salvos');
+                    }
+                });
+            }
+            
+            $('#dados_usuario').find('input, select, button').prop('disabled', true);
+        }
+    });
+    //**************************************************************************
+    
+    /** Função que verifica se algum valor foi modificado**/
+    $(document).on('change, keydown', 'input, select', function(){
+        modificado = modificado + 1;
+        
+        $('#dados_usuario').find('button').prop('disabled', false);
+    });
+    //**************************************************************************
+    
+    /**
+     * Função desenvolvida para salvar as alteraçoes realizadas no cadastro do 
+     * usuário
+     */
+</script>

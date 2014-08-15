@@ -79,6 +79,9 @@
     </div>
 </section>
 <script type="text/javascript">
+    /** Chamada da função que busca os dados pessoais **/
+    buscar_dadosPessoais();
+    
     /** Script para mudar a cor da linha selecionada com o checkbox **/
     $("#inbox-table input[type='checkbox']").change(function() {
         $(this).closest('tr').toggleClass("highlight", this.checked);
@@ -86,7 +89,10 @@
     //**************************************************************************
     
     /** Chamada que irá buscar os dados pessoais do usuário **/
-    urlDadosPessoais = '<?php echo app_baseurl().'global/perfil_associado/buscar_dadosPessoais/'.$id?>';
-    loadAjax(urlDadosPessoais, $('#dados_pessoais'));
+    function buscar_dadosPessoais()
+    {
+        var urlDadosPessoais = '<?php echo app_baseurl().'global/perfil_associado/buscar_dadosPessoais/'.$id?>';
+        loadAjax(urlDadosPessoais, $('#dados_pessoais'));
+    }
     //**************************************************************************
 </script>
