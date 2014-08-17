@@ -95,7 +95,7 @@
                             </label>
                         </section>
                         <section class="col col-6">
-                            <label class="control-label">nacionalidade</label>
+                            <label class="control-label">Nacionalidade</label>
                             <label class="select">
                                 <select name="nacionalidade" id="nacionalidade" disabled=""></select> <i></i>
                                 <input type="hidden" id="nacionalidade_cadastrada" value="<?php echo $row->nacionalidade?>">
@@ -265,7 +265,10 @@
     }
 ?>
 <script type="text/javascript">
-    /** Chama a função que busca as combobox cadastradas **/
+    /** Chama as funções básicas para formulário **/
+    runAllForms();
+    
+    /** Chama a função que busca as combobox cadastradas **/    
     buscar_combo();
     
     /** Variável que vai receber um valor caso o campo **/
@@ -310,18 +313,21 @@
     });
     //**************************************************************************
     
-    /** Função que verifica se algum valor foi modificado**/
-    $(document).on('change, keydown', 'input, select', function(){
+    /** Função que verifica se algum select foi modificado pelo evento change**/
+    $(document).on('change', 'select', function(){
         modificado = modificado + 1;
         
         $('#dados_usuario').find('button').prop('disabled', false);
     });
     //**************************************************************************
     
-    /**
-     * Função desenvolvida para salvar as alteraçoes realizadas no cadastro do 
-     * usuário
-     */
+    /** Função que verifica se algum input foi modificado pelo evento change ou keyup **/
+    $(document).on('change, keyup', 'input', function(){
+        modificado = modificado + 1;
+        
+        $('#dados_usuario').find('button').prop('disabled', false);
+    });
+    //**************************************************************************
     
     /**
      * buscar_combo()

@@ -5,7 +5,7 @@
      * Contém a classe combo
      * 
      * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
-     * @version     string
+     * @version     v1.0.1
      */
     
     /**
@@ -100,7 +100,7 @@
             foreach($nacionalidades as $row)
             {
                 $opcao .= "
-                    <option value='$row->id'>$row->nacionalidade</options>
+                    <option value='$row->id'>$row->nacionalidade</option>
                 ";
             }
             
