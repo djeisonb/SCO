@@ -486,7 +486,6 @@
      * função desenvolvida para buscar as opções que irão popular as combobox
      * 
      * @author  :       Matheus Lopes Santos <fale_com_lopez@hotmail.com>
-     * @todo    :       Setar para os outros elementos o retorno do PHP
      */
     function buscar_combo()
     {
