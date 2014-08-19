@@ -249,9 +249,94 @@
 </section>
 <!-- end widget grid -->
 
+<!-- Modal na qual o administrador do sistema cadastrará para o novo associado -->
+<div class="modal fade" id="cadastro_mensalidades" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					Cadastrar Mensalidades
+				</h4>
+			</div>
+			<div class="modal-body no-padding">
+				<form id="salvar_mensalidades" class="smart-form">
+					
+					<fieldset>
+                        <div class="row">
+                            <section class="col col-12">
+                                <div class="form-group">
+                                    <label class="label"><strong>Valor da mensalidade:</strong></label>
+                                    <div class="input-group">
+                                        <label class="input">
+                                            <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
+                                        </label>
+                                        <span class="input-group-addon">
+                                        	<i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <div class="row">
+                            <section class="col col-12">
+                                <div class="form-group">
+                                    <label class="label"><strong>Parcelas:</strong></label>
+                                    <div class="input-group">
+                                        <label class="input">
+                                            <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        
+                        <div class="row">
+                            <section class="col col-12">
+                                <div class="form-group">
+                                    <label class="label"><strong>Data do 1º pagamento:</strong></label>
+                                    <div class="input-group">
+                                        <label class="input">
+                                            <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        
+                        <div class="row">
+                            <section class="col col-6">
+                                <div class="form-group">
+                                    <label class="label"><strong>Vencimento:</strong></label>
+                                    <div class="input-group">
+                                        <label class="input">
+                                            <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                    </fieldset>
+                    
+                    <footer>
+                        <button type="submit" class="btn btn-primary"> 
+                            Salvar mensalidades
+                        </button>
+                    </footer>
+                    
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!--************************************************************************-->
+
 
 <!-- SCRIPTS ON PAGE EVENT -->
 <script type="text/javascript">
+
+	$('#cadastro_mensalidades').modal('show');
     
     /** Chamada da função de preenchimento de combo **/
     buscar_combo();

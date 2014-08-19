@@ -5,7 +5,7 @@
      * Contem a classe novo
      * 
      * @author      Matheus Lopes Santos <fale_com_lopez@hotmail.com>
-     * @version     v1.1.0
+     * @version     v1.2.0
      */
 
     /**
@@ -124,6 +124,21 @@
             echo $this->associados->salvar($dados);
         }
         //**********************************************************************
+        
+        /**
+         * criar_mensalidades()
+         * 
+         * Função desenvolvida para criação das mensalidades dos associados
+         * 
+         * @author		Matheus Lopes Santos <fale_com_lopez@hotmail.com>
+         * @access		Public
+         * @return		bool Retorna TRUE se salvar e FALSE se não salvar
+         */
+        function criar_mensalidade()
+        {
+        	
+        }
+        //*********************************************************************
     }
     /** End of File home.php **/
     /** Location ./application/controllers/admin/home.php **/
