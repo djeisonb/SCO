@@ -271,7 +271,7 @@
                                             <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
                                         </label>
                                         <span class="input-group-addon">
-                                        	<i class="fa fa-dollar"></i>
+                                        	<i class="fa fa-calendar"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -281,14 +281,11 @@
                         <div class="row">
                             <section class="col col-12">
                                 <div class="form-group">
-                                    <label class="label"><strong>Número de Mensalidades:</strong></label>
+                                    <label class="label"><strong>Parcelas:</strong></label>
                                     <div class="input-group">
                                         <label class="input">
                                             <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
                                         </label>
-                                        <span class="input-group-addon">
-                                        	<i class="fa fa-list-ol"></i>
-                                        </span>
                                     </div>
                                 </div>
                             </section>
@@ -302,25 +299,19 @@
                                         <label class="input">
                                             <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
                                         </label>
-                                        <span class="input-group-addon">
-                                        	<i class="fa fa-calendar"></i>
-                                        </span>
                                     </div>
                                 </div>
                             </section>
                         </div>
                         
                         <div class="row">
-                            <section class="col col-12">
+                            <section class="col col-6">
                                 <div class="form-group">
-                                    <label class="label"><strong>Dia do Vencimento:</strong></label>
+                                    <label class="label"><strong>Vencimento:</strong></label>
                                     <div class="input-group">
                                         <label class="input">
                                             <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
                                         </label>
-                                        <span class="input-group-addon">
-                                        	<i class="fa fa-thumb-tack"></i>
-                                        </span>
                                     </div>
                                 </div>
                             </section>
