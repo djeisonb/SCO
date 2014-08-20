@@ -1,10 +1,11 @@
 <div class="row">
     <!-- Div utilizada para alinhar o formulário de login -->
-    <div class="col-md-4 col-lg-4"></div>
+    <div class="col-md-4 col-lg-4 hidden-sm hidden-xs"></div>
     <!--*********************************************************************-->
     
     <!-- Div que contém o formulário de Login -->
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+    	<br><br>
         <div class="well no-padding">
             <form id="login-form" class="smart-form client-form">
                 <header>
@@ -53,7 +54,7 @@
     <!--*********************************************************************-->
     
     <!-- Div utilizada para alinhar o formulário de login -->
-    <div class="col-md-4 col-lg-4"></div>
+    <div class="col-md-4 col-lg-4 hidden-sm hidden-xs"></div>
     <!--*********************************************************************-->
 </div>
 <script type="text/javascript">

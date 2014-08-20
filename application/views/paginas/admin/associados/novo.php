@@ -268,7 +268,7 @@
                                     <label class="label"><strong>Valor da mensalidade:</strong></label>
                                     <div class="input-group">
                                         <label class="input">
-                                            <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
+                                            <input class="form-control" id="valor_mensalidade" name="valor_mensalidade" type="text" required autofocus="autofocus">
                                         </label>
                                         <span class="input-group-addon">
                                         	<i class="fa fa-calendar"></i>
@@ -284,8 +284,11 @@
                                     <label class="label"><strong>Parcelas:</strong></label>
                                     <div class="input-group">
                                         <label class="input">
-                                            <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
+                                            <input class="form-control" id="numero_parcelas" name="numero_parcelas" type="text" required>
                                         </label>
+                                        <span class="input-group-addon">
+                                        	<strong>Nº</strong>
+                                        </span>
                                     </div>
                                 </div>
                             </section>
@@ -297,21 +300,27 @@
                                     <label class="label"><strong>Data do 1º pagamento:</strong></label>
                                     <div class="input-group">
                                         <label class="input">
-                                            <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
+                                            <input class="form-control" id="data_pagamento" name="data_pagamento" type="text" required data-mask="28/99/<?php echo date('Y') ?>" data-mask-placeholder="*">
                                         </label>
+                                        <span class="input-group-addon">
+                                        	<i class="fa fa-calendar"></i>
+                                        </span>
                                     </div>
                                 </div>
                             </section>
                         </div>
                         
                         <div class="row">
-                            <section class="col col-6">
+                            <section class="col col-12">
                                 <div class="form-group">
-                                    <label class="label"><strong>Vencimento:</strong></label>
+                                    <label class="label"><strong>Dia do vencimento:</strong></label>
                                     <div class="input-group">
                                         <label class="input">
-                                            <input class="form-control" id="data_expiracao" type="text" placeholder="Data de expiração" required>
+                                            <input class="form-control" id="dia_vencimento" name="dia_vencimento" type="text" required data-mask="99" data-mask-placeholder="*">
                                         </label>
+                                        <span class="input-group-addon">
+                                        	<strong>1º</strong>
+                                        </span>
                                     </div>
                                 </div>
                             </section>
@@ -334,9 +343,22 @@
 
 
 <!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript" src="./js/plugin/maskMoney/jquery.maskMoney.min.js"></script>
 <script type="text/javascript">
 
-	$('#cadastro_mensalidades').modal('show');
+	if(isNaN(x)){
+		alert('Numero');
+	}
+	
+
+	//Adiciona a mascara monetário ao campo de valor da mensalidade
+	$('#valor_mensalidade').maskMoney({
+		prefix: 'R$ ',
+		thousands: '',
+		decimal: '.',
+		precision: 2
+	});
+	//*************************************************************************
     
     /** Chamada da função de preenchimento de combo **/
     buscar_combo();
@@ -554,11 +576,14 @@
             {
                 if(e == 1)
                 {
-                    msg_sucesso('salvou');
+                	msg_sucesso('O associado foi salvo com sucesso');
+                	$('#cadastro_mensalidades').modal('show');
+                	$('#valor_mensalidade').focus();
                 }
                 else
                 {
-                    msg_erro('Não salvou');
+                    msg_erro('Ocorreu um erro ao salvar');
+                    return false;
                 }
             }
         });

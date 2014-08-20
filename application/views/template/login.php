@@ -14,7 +14,7 @@
         <script src="./js/libs/jquery-2.0.2.min.js"></script>
     </head>
 
-    <body class="animated fadeInDown">
+    <body id="login" class="animated fadeInDown">
         <!-- Header da página -->
         <header id="header">
             <div id="logo-group">
